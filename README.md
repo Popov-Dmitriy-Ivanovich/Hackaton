@@ -4,7 +4,7 @@
     - python
     - nodejs (express)
     - linux
-- Popov Dmitriy:
+- Mokichev Alexandr:
 	- HTML
 	- CSS
 	- JS
