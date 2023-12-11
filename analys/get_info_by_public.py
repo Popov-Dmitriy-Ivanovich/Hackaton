@@ -63,6 +63,16 @@ def get_groups_info(groupid): #  Получаем информацию о гру
     except Exception as e:
         return None
 
+
+def groupByName(data): #Получаем айдишник по названию
+    try:
+        response = vk_api.groups.getById(group_id=data, v=5.92)
+        groupId = response[0]['id']
+        return groupId
+    except Exception as e:
+        return None
+
+
 def common_subs(data): # Выводим топ-10 пабликов
       all_subs_flat = [sub for sublist in data['subs'] for sub in sublist]
       subs_counter = Counter(all_subs_flat)
@@ -102,7 +112,7 @@ if __name__ == "__main__":
     token = ""
     vk_api = vk.API(token)
 
-    idgroup = 145143169 #бухгалтерия
+    idgroup = groupByName('rare_plants_collection') 
 
     members = get_members(idgroup)
     save_user_data(members, str(idgroup)+".txt")
