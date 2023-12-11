@@ -4,3 +4,8 @@
     - python
     - nodejs (express)
     - linux
+- Popov Dmitriy:
+	- HTML
+	- CSS
+	- JS
+	- React
