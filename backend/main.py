@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.responses import FileResponse 
+from starlette.responses import FileResponse
 import json
+
 app = FastAPI()
 origins = [
     "http://localhost",
@@ -16,34 +17,49 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 class SendHelloWorld:
     def __init__(self):
         self.data = "Hello world"
 
+
 class LoginResponce:
     def __init__(self, success: bool) -> None:
-        self.data = {'status':'OK' if success else 'ERR'}
+        self.data = {"status": "OK" if success else "ERR"}
+
 
 class Course:
-    def __init__(self,name: str,desc: str) -> None:
+    def __init__(self, name: str, desc: str) -> None:
         self.name = name
         self.description = desc
 
+
 class CoursesList:
-    def __init__(self,courses: list[Course]) -> None:
-        self.data = {"courses":courses}
+    def __init__(self, courses: list[Course]) -> None:
+        self.data = {"courses": courses}
+
+
 @app.get("/")
 async def main():
-    return FileResponse('placeholder.html')
+    return FileResponse("placeholder.html")
+
 
 @app.post("/api/login")
 async def main():
     return LoginResponce(True)
 
-@app.post('/api/get_courses')
-async def main():
-    return CoursesList([Course('1 course','description of 1 course'),Course('2 course','description of 2 course')])
 
-@app.get('/api/get_profile_form')
+@app.post("/api/get_courses")
 async def main():
-    return json.load(open('./TEST_form.json'))
+    return CoursesList(
+        [
+            Course("1 course", "description of 1 course"),
+            Course("2 course", "description of 2 course"),
+        ]
+    )
+
+
+@app.get("/api/get_profile_form")
+async def main():
+    return json.load(open("./TEST_form.json"))
