@@ -4,3 +4,8 @@
     - python
     - nodejs (express)
     - linux
+- Mokichev Alexandr:
+	- HTML
+	- CSS
+	- JS
+	- React
