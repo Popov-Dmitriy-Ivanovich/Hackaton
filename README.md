@@ -9,3 +9,8 @@
 	- CSS
 	- JS
 	- React
+
+- Krasnova Alina
+    - Python (django, pandas, scikit, tensorflow)
+    - ReactTS
+    - Linux
