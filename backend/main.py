@@ -19,11 +19,6 @@ app.add_middleware(
 )
 
 
-class SendHelloWorld:
-    def __init__(self):
-        self.data = "Hello world"
-
-
 class LoginResponce:
     def __init__(self, success: bool) -> None:
         self.data = {"status": "OK" if success else "ERR"}
@@ -42,7 +37,7 @@ class CoursesList:
 
 @app.get("/")
 async def main():
-    return FileResponse("placeholder.html")
+    return FileResponse("resourses/frontend/placeholder.html")
 
 
 @app.post("/api/login")
@@ -62,4 +57,4 @@ async def main():
 
 @app.get("/api/get_profile_form")
 async def main():
-    return json.load(open("./TEST_form.json"))
+    return json.load(open("resourses/forms/TEST_form.json"))
