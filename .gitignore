@@ -28,3 +28,6 @@ backend/venv
 ./frontendyarn-error.log*
 backend/__pycache__/*
 backend/__pycache__
+profilium.db 
+backend/profilium.db 
+*profilium.db*

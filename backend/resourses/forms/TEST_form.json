@@ -1,0 +1,10 @@
+[
+    {
+        "text": "Модулей по высоте",
+        "buttons": {"buttons_type": "text", "buttons_texts": [""]}
+    },
+    {
+        "text": "Модулей по ширине",
+        "buttons": {"buttons_type": "text", "buttons_texts": [""]}
+    }
+]
