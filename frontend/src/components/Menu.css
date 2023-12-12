@@ -1,0 +1,6 @@
+.Menu{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    margin-top: 50px;
+}

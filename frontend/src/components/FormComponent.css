@@ -1,0 +1,29 @@
+.Form_ul{
+    list-style: none;
+    text-align: left;
+    padding-left: 10px;
+}
+
+#get_pdf_div{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: black;
+    border-radius: 5px;
+    height: 30px;
+    width: 80px;
+    color: white;
+    margin: auto;
+    padding-top: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.PDF_button_container{
+    width: 30%;
+}
+
+.subform_container{
+    width: 30%;
+    margin-left: 2%;
+}

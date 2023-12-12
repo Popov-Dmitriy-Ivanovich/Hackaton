@@ -1,0 +1,8 @@
+.ActionCardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80vw;
+    margin: auto;
+    margin-top: 60px;
+}

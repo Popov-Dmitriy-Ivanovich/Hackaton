@@ -1,0 +1,26 @@
+
+.Header{
+    width: 100%;
+    display: flex;
+    justify-items: center;
+}
+
+.Name {
+    background: 
+     linear-gradient(blue,blue) padding-box,
+     linear-gradient(to right, #06a3ce, #ffbe98c0) border-box;
+    color: #313149;
+    padding: 10px;
+    border: 3px solid transparent;
+    border-radius:15px;
+    display:inline-block;
+    margin: 15px 0 0 30px;
+    font-size: 30px;
+    font-family: MontserratBold;
+    color: white;
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url("../resources/fonts/Montserrat-Bold.ttf");
+}

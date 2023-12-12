@@ -1,0 +1,62 @@
+.LoginFormContainer{
+    padding-top: 10vh;
+    
+}
+
+.LoginForm{
+    padding: 50px;
+    width: fit-content;
+    margin: auto;
+    border-radius: 30px;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+}
+
+.LoginInput{
+    margin-top: 30px;
+}
+
+.LoginLabel{
+    font-family: MontserratBold;
+    color: white;
+    font-size: 30px;
+}
+
+.LoginButton{
+    background-color: transparent;
+    width: 100px;
+    height: fit-content;
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    border-radius: 15px;
+    border: 2px solid #ffdeca88;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.LoginFormInput{
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 2px solid #ffdecaae;
+    text-align: center;
+    outline: none;
+    font-size: 20px;
+    cursor: text;
+    color: #ffefe5bc;
+}
+
+.LoginFormInput::placeholder{
+    color: #ffefe5bc;
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url("../resources/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: MontserratLight;
+    src: url("../resources/fonts/Montserrat-Light.ttf");
+}

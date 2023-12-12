@@ -1,0 +1,45 @@
+.ActionCard{
+    min-height: 200px;
+    height: fit-content;
+    min-width: 360px;
+    width: 30vw;
+    margin: 20px;
+    border-radius: 30px;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    padding: 15px;
+    padding-top: 30px;
+    transition: 0.3s linear;
+}
+
+.ActionCard:hover{
+    border: 3px solid #ffdecaac;
+    background-color: #ffdeca39;
+    padding: 20px;
+    transition: 0.3s linear;
+}
+
+.CardName{
+    font-family: MontserratBold;
+    font-size: 25px;
+    color: white;
+}
+
+.CardDescription{
+    font-family: MontserratLight;
+    font-size: 18px;
+    color: white;
+    text-align: justify;
+    text-align-last: center
+}
+
+
+@font-face {
+    font-family: MontserratBold;
+    src: url("../resources/fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: MontserratLight;
+    src: url("../resources/fonts/Montserrat-Light.ttf");
+}
