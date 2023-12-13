@@ -15,6 +15,8 @@ origins = [
     "http://localhost:8080",
     "https://localhost",
     "https://loaclhost:8080",
+    "http://localhost:3000",
+    "http://192.168.111.205:3000"
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -28,7 +30,7 @@ class Course:
         self.name = name
         self.description = desc
 class CoursesList:
-    def __init__(self, courses: list[Course]) -> None:
+    def __init__(self, courses: list) -> None:
         self.data = {"courses": courses}
 
 @app.get("/")
@@ -56,3 +58,7 @@ async def main():
 @app.get("/api/get_profile_form")
 async def main():
     return json.load(open("resourses/forms/TEST_form.json"))
+
+@app.get('/api/login_index')
+async def main():
+    return FileResponse('resourses/frontend/index.html')

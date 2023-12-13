@@ -19,24 +19,24 @@ class FormComponent extends Component{
     }
 
     componentDidMount() {
-        // fetch('http://'+this.props.ip+':3010/api/form/'+this.props.form_path)
-        // .then(res => res.json())
-        // .then(
-        //     (result) => {
-        //         this.setState({
-        //             loaded: true,
-        //             subforms: result.data,
-        //             choices: {}
-        //         });
-        //     },
-        //     (error) => {
-        //         this.setState({
-        //             loaded: true,
-        //             error
-        //         })
-        //     }
-        // )
-        this.setState({subforms: this.props.subforms})
+        fetch('http://'+this.props.ip+':80/api/get_profile_form/')
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    loaded: true,
+                    subforms: result,
+                    choices: {}
+                });
+            },
+            (error) => {
+                this.setState({
+                    loaded: true,
+                    error
+                })
+            }
+        )
+        // this.setState({subforms: this.props.subforms})
     }
 
     change_text_input = (key, new_text)=>{

@@ -7,7 +7,8 @@ class Menu extends Component{
         return(
             <div className="Menu">
                 <ActionCard onClick_func={()=>this.props.set_process('form')} name={"Пройти тестирование"} description={"Предлагаем пройти психологический тест, который поможет вам определиться с профессиональной ориентацией"} />
-                <ActionCard onClick_func={()=>window.open('http://localhost:80', "hello", "width=220,height=200", '_blank', 'noreferrer')} name={"Анализ страницы в ВК"} description={"Вам будет предложено авторизоваться в ВК для анализа вашей страницы в целях помощи с профессиональной ориентацией"} />
+
+                <ActionCard onClick_func={()=>window.open('http://'+"localhost"+':80/api/login_index', "hello", "top=200, left=200, menubar=no, width=220, scrollbars=no, height=200", '_blank', 'noreferrer')} name={"Анализ страницы в ВК"} description={"Вам будет предложено авторизоваться в ВК для анализа вашей страницы в целях помощи с профессиональной ориентацией"} />
             </div>
         )
     }
