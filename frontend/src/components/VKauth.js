@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import './VKauth.css'
 import * as VKID from '@vkid/sdk';
+import VKlogo from "../resources/imgs/new_logo_vk_28.svg"
 
 class VKauth extends Component{
     componentDidMount(){
@@ -11,13 +12,15 @@ class VKauth extends Component{
     }
 
     login = () =>{
-        VKID.Auth.login(res=>console.log(res))
+        VKID.Auth.login((res)=>console.log(res));
     }
 
     render(){
+        const oneTap = new VKID.OneTap();
         return(
             <div className="VKauth">
-                <button onClick={()=>this.login()}> Войти через VK ID </button>
+                {/* <button onClick={()=>VKID.Auth.login((res)=>console.log(res))}> <img src={VKlogo}></img> Войти через VK ID </button> */}
+                {oneTap.render()}
             </div>
         )
     }
