@@ -5,7 +5,7 @@ import Header from './components/Header.js'
 import Logo from './components/Logo.js'
 import Menu from './components/Menu.js'
 import FormComponent from './components/FormComponent.js'
-import VKauth from './components/VKauth.js'
+import VKauth from './components/VKauth_another.js'
 
 class App extends Component {
 	state={
