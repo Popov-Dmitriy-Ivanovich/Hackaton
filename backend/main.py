@@ -7,8 +7,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import json
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="../frontend/build/static"), name="static")
+templates = Jinja2Templates(directory="../frontend/build")
 
 origins = [
     "http://localhost",
@@ -30,10 +30,6 @@ class Course:
 class CoursesList:
     def __init__(self, courses: list[Course]) -> None:
         self.data = {"courses": courses}
-
-# @app.get("/")
-# async def main():
-#     return FileResponse("../frontend/build/index.html")
 
 @app.get("/")
 async def serve_spa(request: Request):
