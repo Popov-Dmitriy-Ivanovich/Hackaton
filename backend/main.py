@@ -1,10 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import FileResponse
 from src.login import LoginData, process_login
 from src.register import RegisterData, register_user
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 import json
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
+
 origins = [
     "http://localhost",
     "http://localhost:8080",
@@ -26,9 +31,13 @@ class CoursesList:
     def __init__(self, courses: list[Course]) -> None:
         self.data = {"courses": courses}
 
+# @app.get("/")
+# async def main():
+#     return FileResponse("../frontend/build/index.html")
+
 @app.get("/")
-async def main():
-    return FileResponse("resourses/frontend/placeholder.html")
+async def serve_spa(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/api/login")
 async def main(log_data: LoginData):
