@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
-import SeparateLine from './SeparateLine'
 import './FormComponent.css'
 
 
 class FormComponent extends Component{
     state={
-        subforms: []
+        subforms: [],
+        choices: [],
+        text_inputs: {}
     }
     constructor(props){
         super(props);
@@ -38,6 +39,12 @@ class FormComponent extends Component{
         this.setState({subforms: this.props.subforms})
     }
 
+    change_text_input = (key, new_text)=>{
+        let tmp = this.state.text_inputs;
+        tmp[key] = new_text;
+        this.setState({text_inputs: tmp})
+    }
+
     SendLEDForm = async() => {
         await fetch("http://" + this.props.ip + ":3010/api/response/LED_form", {
             method: 'POST',
@@ -63,17 +70,18 @@ class FormComponent extends Component{
 
     render(){
         return(
-            <div>
+            <div className='FormContainer'>
                 <ul className="Form_ul">
                     {this.state.subforms.map((subform)=>(
                         <li>
                             <div className='subform_container'>
-                            {subform.text}<br/>
+                            <div className='subform_lable'>{subform.text}</div>
                             {
                                 <ul style={{listStyle: 'none'}}>
                                     {subform.buttons.buttons_texts.map((text)=>(
                                         <li>
                                             <input
+                                                className='FormInput'
                                                 type={subform.buttons.buttons_type} 
                                                 name={subform.text} 
                                                 onChange={
@@ -82,7 +90,7 @@ class FormComponent extends Component{
                                                     : (subform.buttons.buttons_type==="checkbox") ? 
                                                         ()=>this.buttons_listener(subform.text, this.state.choices[subform.text]==='+' ? '-' : '+') 
                                                     : (subform.buttons.buttons_type==="text") ? 
-                                                        (event)=>this.buttons_listener(subform.text, event.target.value) 
+                                                        (event)=>{this.buttons_listener(subform.text, event.target.value); this.change_text_input(subform.text, event.target.value)} 
                                                     :
                                                         ()=>{}}
                                             >
@@ -91,16 +99,11 @@ class FormComponent extends Component{
                                     ))}
                                 </ul>
                             }
-                            <SeparateLine/>
                             </div>
                         </li>
                     ))}
                 </ul>
-                <ul>
-                    {(this.state.choices!=null) ? Object.keys(this.state.choices).map(key => (<li>{key} {this.state.choices[key]}</li>)) : ''}
-                </ul>
-
-                    <div className="PDF_button_container"><div id="get_pdf_div" onClick={this.SendLEDForm}>Get PDF</div></div>
+                
 
             </div>
         )

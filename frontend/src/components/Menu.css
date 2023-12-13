@@ -1,6 +1,7 @@
 .Menu{
+    margin: auto;
     display: flex;
-    width: 100vw;
+    width: 80vw;
     justify-content: center;
     margin-top: 50px;
 }

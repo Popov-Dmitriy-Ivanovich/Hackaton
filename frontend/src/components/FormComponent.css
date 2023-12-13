@@ -1,29 +1,107 @@
-.Form_ul{
-    list-style: none;
-    text-align: left;
-    padding-left: 10px;
+*{
+    color: white;
 }
 
-#get_pdf_div{
+.Form_ul {
+    list-style: none;
+    padding: 0;
+}
+
+.FormContainer{
+    width: 80vw;
+    margin: auto;
     display: flex;
     justify-content: center;
-    align-content: center;
-    background-color: black;
-    border-radius: 5px;
-    height: 30px;
-    width: 80px;
-    color: white;
-    margin: auto;
-    padding-top: 10px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.PDF_button_container{
-    width: 30%;
+    padding-bottom: 50px;
 }
 
 .subform_container{
-    width: 30%;
-    margin-left: 2%;
+    border-radius: 30px;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+    text-align: left;
+    font-family: MontserratLight;
+}
+
+.subform_lable{
+    font-family: MontserratSemiBold;
+    margin-bottom: 10px;
+}
+
+/* .FormInput{
+    border-radius: 5px;
+    border: 3px solid #ffdeca6e;
+    background-color: transparent;
+
+} */
+
+input[type=radio]{
+    appearance: none;
+  
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+  
+    border: 2px solid #ffdeca6e;
+    transition: 0.15s all linear;
+    margin-right: 5px;
+  
+    position: relative;
+    top: 4px;
+}
+  
+input[type=radio]:checked {
+  border: 6px solid #ffdeca6e;
+}
+
+input[type=checkbox]{
+    appearance: none;
+  
+    border-radius: 10%;
+    width: 16px;
+    height: 16px;
+  
+    border: 2px solid #ffdeca6e;
+    transition: 0.15s all linear;
+    margin-right: 5px;
+  
+    position: relative;
+    top: 4px;
+}
+  
+input[type=checkbox]:checked {
+  border: 6px solid #ffdeca6e;
+}
+ 
+input[type=text]{
+    border: 3px solid #ffdeca6e;
+    background-color: transparent;
+
+    outline: none;
+    color: white;
+    font-family: MontserratSemiBold;
+  
+    border-radius: 10px;
+    width: 200px;
+    height: 30px;
+    transition: 0.8s;
+}
+
+input[type=text]:focus{
+    width: 300px;
+    transition: 0.8s;
+}
+
+@font-face {
+    font-family: MontserratSemiBold;
+    src: url("../resources/fonts/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: MontserratLight;
+    src: url("../resources/fonts/Montserrat-Light.ttf");
 }

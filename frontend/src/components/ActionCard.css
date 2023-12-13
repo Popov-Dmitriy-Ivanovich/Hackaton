@@ -1,7 +1,7 @@
 .ActionCard{
-    min-height: 200px;
     height: fit-content;
-    min-width: 360px;
+    min-width: 180px;
+    min-height: 300px;
     width: 30vw;
     margin: 20px;
     border-radius: 30px;

@@ -5,6 +5,7 @@ import Header from './components/Header.js'
 import Logo from './components/Logo.js'
 import Menu from './components/Menu.js'
 import FormComponent from './components/FormComponent.js'
+import VKauth from './components/VKauth.js'
 
 class App extends Component {
 	state={
@@ -171,7 +172,9 @@ class App extends Component {
 				(this.state.process === 'menu') ? 
 				<Menu set_process={this.set_process}/>: 
 				(this.state.process === 'form') ? 
-				<FormComponent subforms={this.state.form}/>: ''
+				<FormComponent subforms={this.state.form}/>: 
+				(this.state.process === 'VK') ? 
+				<VKauth/>: ''
 				}
 				<Logo />
 			</div>
