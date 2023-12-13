@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import FileResponse
+from src.login import LoginData, process_login
+from src.register import RegisterData, register_user
 import json
-
 app = FastAPI()
 origins = [
     "http://localhost",
@@ -17,33 +18,25 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-class LoginResponce:
-    def __init__(self, success: bool) -> None:
-        self.data = {"status": "OK" if success else "ERR"}
-
-
 class Course:
     def __init__(self, name: str, desc: str) -> None:
         self.name = name
         self.description = desc
-
-
 class CoursesList:
     def __init__(self, courses: list[Course]) -> None:
         self.data = {"courses": courses}
-
 
 @app.get("/")
 async def main():
     return FileResponse("resourses/frontend/placeholder.html")
 
-
 @app.post("/api/login")
-async def main():
-    return LoginResponce(True)
+async def main(log_data: LoginData):
+    return process_login(log_data)
 
+@app.post('/api/register')
+async def main(reg_data: RegisterData):
+    return register_user(reg_data)
 
 @app.post("/api/get_courses")
 async def main():

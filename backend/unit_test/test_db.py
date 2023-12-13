@@ -1,10 +1,11 @@
-from db.db_classes import UsersTable, LoginDataTable, CoursesTable, ProfessionsTable, SingletonConnection, connect_db
+from db.db_classes import UsersTable, LoginDataTable, CoursesTable, ProfessionsTable, SingletonConnection, connect_db,Connection
 import unittest
 
 
 class TestDbConnection(unittest.TestCase):
     def __init__(self, methodName: str = "runTest") -> None:
-        self.db_connection = connect_db('unit_test/resourses/test.db')
+        print('db_init')
+        self.db_connection = Connection('unit_test/resourses/test.db')
         self._clear_db()
         super().__init__(methodName)
 
@@ -21,6 +22,7 @@ class TestDbConnection(unittest.TestCase):
             self.db_connection.session.delete(row)
         for row in proff:
             self.db_connection.session.delete(row)
+        self.db_connection.session.commit()
     
     def test_users_table(self):
         rows = []
