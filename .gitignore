@@ -33,3 +33,4 @@ backend/profilium.db
 *profilium.db*
 backend/static
 backend/templates
+*venv*
