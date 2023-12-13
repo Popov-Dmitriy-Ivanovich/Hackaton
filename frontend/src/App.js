@@ -151,7 +151,9 @@ class App extends Component {
 				name: "Name8",
 				description: "Action card 3 description".repeat(10)
 			}
-		]
+		],
+		ip: "192.168.111.205"
+		// ip: "localhost"
 	}
 
 	send_login = (login, password)=>{
@@ -167,11 +169,11 @@ class App extends Component {
 			<div className="App">
 				<Header />
 				{(this.state.process === 'login') ? 
-				<LoginForm send_login={this.send_login}/> :
+				<LoginForm send_login={this.send_login} ip={this.state.ip}/> :
 				(this.state.process === 'menu') ? 
-				<Menu set_process={this.set_process}/>: 
+				<Menu set_process={this.set_process} ip={this.state.ip}/>: 
 				(this.state.process === 'form') ? 
-				<FormComponent subforms={this.state.form}/>: ''
+				<FormComponent subforms={this.state.form} ip={this.state.ip} />: ''
 				// (this.state.process === 'VK') ? 
 				// <VKauth/>: ''
 				}

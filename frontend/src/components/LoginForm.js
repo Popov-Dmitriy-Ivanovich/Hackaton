@@ -11,7 +11,7 @@ class LoginForm extends Component{
     }
 
     send_login = async() => {
-        await fetch("http://" + this.props.ip + ":3010/api/login", {
+        await fetch("http://" + this.props.ip + ":80/api/login", {
             method: 'POST',
             headers:{
                 'content-type': 'application/json;charser=utf-8'
@@ -20,10 +20,8 @@ class LoginForm extends Component{
         })
         .then(responce => {
             responce.json().then(res=>{
-                console.log(res);
-            if (res.body === 'OK'){
-                this.props.set_login_status('logined');
-                this.props.set_login_pass(this.state.login);
+            if (res.status === 'OK'){
+                this.props.send_login(this.state.login, this.state.password);
                 this.setState({logined: true})
             }
             else{
@@ -41,7 +39,8 @@ class LoginForm extends Component{
                 <span className='LoginLabel'>Login</span><br/>
                 <input className='LoginFormInput LoginInput'    placeholder='Login' onChange={(event)=>{this.setState({login: event.target.value})}}></input><br/>
                 <input className='LoginFormInput PasswordInput' placeholder='Password' type='password' onChange={(event)=>{this.setState({password: event.target.value})}}></input><br/>
-                <button className='LoginButton' onClick={()=>{this.props.send_login()}}> Login </button><br/><br/>
+                {/* <button className='LoginButton' onClick={()=>{this.props.send_login()}}> Login </button><br/><br/> */}
+                <button className='LoginButton' onClick={()=>{this.send_login()}}> Login </button><br/><br/>
                 {(this.state.login_failed) ? <span className='LoginFailedLabel'>Login failed</span> :""}
             </div>
             </div>
