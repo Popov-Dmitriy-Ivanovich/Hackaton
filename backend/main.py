@@ -73,6 +73,7 @@ async def main(code:str, state:str):
     auth_url += '&redirect_uri=https://89.232.176.33:443/api/login_index'
     auth_url += '&code='+code
     r = request('get',auth_url)
+    print(r.json)
     return {'data': r.text}
 
 @app.post('/api/profile_form_res')
