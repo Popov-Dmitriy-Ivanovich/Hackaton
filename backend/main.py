@@ -25,7 +25,7 @@ origins = [
 ]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,10 +66,6 @@ async def main():
     return json.load(open("resourses/forms/TEST_form.json"))
 
 @app.get('/api/login_index')
-
-@app.post('/api/profile_form_res')
-async def main(form_res: ProfileFormResult):
-    return process_favourites(form_res)
 async def main(code:str, state:str):
     auth_url = 'https://oauth.vk.com/access_token'
     auth_url += '?client_id=51813528'
@@ -78,3 +74,7 @@ async def main(code:str, state:str):
     auth_url += '&code='+code
     r = request('get',auth_url)
     return {'data': r.text}
+
+@app.post('/api/profile_form_res')
+async def main(form_res: ProfileFormResult):
+    return process_favourites(form_res)
