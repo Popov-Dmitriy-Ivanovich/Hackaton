@@ -3,6 +3,8 @@ from collections import Counter
 import pandas as pd
 import time
 
+token = "" # Сюда токен пользователя
+vk_api = vk.API(token)
 
 
 def get_members(groupid, token):  # Получаем первую 10000 подписчиков
