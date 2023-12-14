@@ -1,12 +1,16 @@
 from db.db_classes import connect_db, ProfessionsTable, CoursesTable
 from pydantic import BaseModel
+
+
 class Profession:
-    def __init__(self, name: str)  -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
-        self.description = 'description of profession: ' + self.name
+        self.description = "description of profession: " + self.name
+
+
 conn = connect_db()
 proff = [
-  "Архитектор",
+    "Архитектор",
     "Строитель",
     "Риэлтор",
     "Ландшафтный дизайнер",
@@ -85,18 +89,24 @@ proff = [
     "Юрист корпорации",
     "Криминалист",
     "Фермер",
-    "Агроном"
+    "Агроном",
 ]
-prof_data = list(map(lambda x: Profession(x),proff))
+prof_data = list(map(lambda x: Profession(x), proff))
 for i in prof_data:
-    prof_unit = ProfessionsTable(name=i.name,description=i.description)
+    prof_unit = ProfessionsTable(name=i.name, description=i.description)
     conn.session.add(prof_unit)
     print(prof_unit.id)
     conn.session.commit()
     print(prof_unit.id)
     for i in range(3):
-        course_unit = CoursesTable(course_name=f'course №{i} for profession {prof_unit.name}',description='some description for course',profession_id=prof_unit.id)
+        course_unit = CoursesTable(
+            course_name=f"course №{i} for profession {prof_unit.name}",
+            description="some description for course",
+            profession_id=prof_unit.id,
+        )
         conn.session.add(course_unit)
         conn.session.commit()
-        print(course_unit.course_name,course_unit.description,course_unit.profession_id)
+        print(
+            course_unit.course_name, course_unit.description, course_unit.profession_id
+        )
 conn.session.commit()

@@ -1,3 +1,4 @@
+Натравить форматилку на код
 ТЕСТОВОЕ ПОКРЫТИЕ ДЛЯ CoursesGenerator
 test /api/get_courses
 test /api/profile_form_res
