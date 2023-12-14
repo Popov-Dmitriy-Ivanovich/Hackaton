@@ -8,6 +8,7 @@ from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from typing import List
 from src.process_form import process_favourites, ProfileFormResult
+from requests import request
 import json
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="../frontend/build/static"), name="static")
@@ -65,9 +66,15 @@ async def main():
     return json.load(open("resourses/forms/TEST_form.json"))
 
 @app.get('/api/login_index')
-async def main():
-    return FileResponse('resourses/frontend/index.html')
 
 @app.post('/api/profile_form_res')
 async def main(form_res: ProfileFormResult):
     return process_favourites(form_res)
+async def main(code:str, state:str):
+    auth_url = 'https://oauth.vk.com/access_token'
+    auth_url += '?client_id=51813528'
+    auth_url += '&client_secret=VXE0bHDlD2n9zNIolh2h'
+    auth_url += '&redirect_uri=https://89.232.176.33:443/api/login_index'
+    auth_url += '&code='+code
+    r = request('get',auth_url)
+    return {'data': r.text}
