@@ -13,6 +13,7 @@ class UsersTable(BaseTable):
     id = Column (Integer, primary_key=True)
     name = Column(String)
     rel_to_login_data_table = relationship('LoginDataTable', back_populates='fk_to_users_table')
+    rel_to_favourites_table = relationship('FavouritesTable', back_populates='fk_fav_to_users_table')
 
 class LoginDataTable(BaseTable):
     __tablename__ = 'LoginDataTable'
@@ -34,6 +35,13 @@ class ProfessionsTable(BaseTable):
     name = Column(String)#unique=True)
     description = Column(String)
     rel_to_courses_table = relationship('CoursesTable', back_populates='fk_to_professions_table')
+
+class FavouritesTable (BaseTable):
+    __tablename__ = 'FavouritesTable'
+    id = Column(Integer,primary_key=True)
+    name = Column(String)
+    user_id = Column(Integer, ForeignKey('UsersTable.id'))
+    fk_fav_to_users_table = relationship('UsersTable', back_populates='rel_to_favourites_table')
 
 class SingletonConnection (object):
     def __new__(cls,url):

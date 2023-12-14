@@ -5,6 +5,9 @@ from src.login import LoginData, process_login
 from src.register import RegisterData, register_user
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
+from typing import List
+from src.process_form import process_favourites, ProfileFormResult
 import json
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="../frontend/build/static"), name="static")
@@ -40,6 +43,7 @@ async def serve_spa(request: Request):
 
 @app.post("/api/login")
 async def main(log_data: LoginData):
+    print(log_data)
     return process_login(log_data)
 
 @app.post('/api/register')
@@ -63,3 +67,7 @@ async def main():
 @app.get('/api/login_index')
 async def main():
     return FileResponse('resourses/frontend/index.html')
+
+@app.post('/api/profile_form_res')
+async def main(form_res: ProfileFormResult):
+    return process_favourites(form_res)
