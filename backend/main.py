@@ -4,6 +4,7 @@ from starlette.responses import FileResponse
 from src.login import LoginData, process_login
 from src.register import RegisterData, register_user
 from src.vk_auth import VkAuth
+from src.courses_generator import CoursesRequest,CoursesGenerator
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
@@ -53,13 +54,12 @@ async def main(reg_data: RegisterData):
     return register_user(reg_data)
 
 @app.post("/api/get_courses")
-async def main():
-    return CoursesList(
-        [
-            Course("1 course", "description of 1 course"),
-            Course("2 course", "description of 2 course"),
-        ]
-    )
+async def main(body : CoursesRequest):
+    generator = CoursesGenerator()
+    try:
+        return generator.execute(body.data.login)
+    except Exception as e:
+        return {'err':str(e)}
 
 
 @app.get("/api/get_profile_form")
