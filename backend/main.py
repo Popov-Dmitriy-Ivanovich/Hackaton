@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import FileResponse
 from src.login import LoginData, process_login
 from src.register import RegisterData, register_user
+from src.vk_auth import VkAuth
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
@@ -67,14 +68,12 @@ async def main():
 
 @app.get('/api/login_index')
 async def main(code:str, state:str):
-    auth_url = 'https://oauth.vk.com/access_token'
-    auth_url += '?client_id=51813528'
-    auth_url += '&client_secret=VXE0bHDlD2n9zNIolh2h'
-    auth_url += '&redirect_uri=https://89.232.176.33:443/api/login_index'
-    auth_url += '&code='+code
-    r = request('get',auth_url)
-    print(r.json())
-    return {'data': r.text}
+    authentificator = VkAuth(code,state)
+    try:
+        authentificator.add_user_vk_data_to_db()
+    except Exception as e:
+        return {'err': str(e)}
+    return FileResponse('resourses/frontend/placeholder.html')
 
 @app.post('/api/profile_form_res')
 async def main(form_res: ProfileFormResult):

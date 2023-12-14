@@ -12,6 +12,8 @@ class UsersTable(BaseTable):
     __tablename__ = 'UsersTable'
     id = Column (Integer, primary_key=True)
     name = Column(String)
+    vk_id = Column(String)
+    access_token = Column(String)
     rel_to_login_data_table = relationship('LoginDataTable', back_populates='fk_to_users_table')
     rel_to_favourites_table = relationship('FavouritesTable', back_populates='fk_fav_to_users_table')
 
