@@ -17,6 +17,7 @@ origins = [
     "https://loaclhost:8080",
     "http://localhost:3000",
     "http://192.168.111.205:3000"
+    "*",
 ]
 app.add_middleware(
     CORSMiddleware,
