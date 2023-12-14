@@ -2,4 +2,6 @@ test /api/profile_form_res
 add professions to production database
 implement /api/get_courses
 implement /api/login_index (vk_auth) (access token for every user is unique, should be saved with user_id)
-https://oauth.vk.com/authorize?client_id=51813528&display=page&redirect_uri=https://89.232.176.33:443/api/login_index&scope=friends&response_type=code&v=5.131&state=TestLogin
+https://oauth.vk.com/authorize?client_id=51813528&display=page&redirect_uri=https://89.232.176.33:443/api/login_index&scope=friends&response_type=code&v=5.131&state=Alex
+
+https://oauth.vk.com/authorize?client_id=51813528&display=page&redirect_uri=https://89.232.176.33:443/api/login_index&scope=friends&response_type=code&v=5.131&state=Dmitriy

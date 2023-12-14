@@ -11,7 +11,7 @@ class VkAuth (object):
         auth_url += '?client_id='+CLIENT_ID
         auth_url += '&client_secret='+CLIENT_SECRET
         auth_url += '&redirect_uri=https://89.232.176.33:443/api/login_index'
-        auth_url += '&code='+self.code
+        auth_url += '&code='+self._code
         r = request('get',auth_url)
         vk_responce = r.json()
         if ('error' in vk_responce.keys()):
