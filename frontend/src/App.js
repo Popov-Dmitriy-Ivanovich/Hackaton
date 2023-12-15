@@ -37,7 +37,7 @@ class App extends Component {
 			<div className="App">
 				<Header 
 					show_menu_button={this.state.process!=='login' && this.state.process!=='menu'} 
-					go_to_menu={()=>this.set_process('menu')}
+					go_to_menu={(this.state.process!=="login" && this.state.process!=="register") ? ()=>this.set_process('menu') : ()=>{}}
 				/>
 				{(this.state.process === 'login') ? 
 					<LoginForm send_login={this.send_login} 

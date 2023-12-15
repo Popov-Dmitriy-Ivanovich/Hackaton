@@ -28,6 +28,7 @@ class LoginForm extends Component{
         })
         .then(responce => {
             responce.json().then(res=>{
+                console.log(res)
             if (res.status === 'OK'){
                 this.props.send_login(this.state.login, this.state.password);
                 this.setState({logined: true})
