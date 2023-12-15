@@ -96,6 +96,41 @@ input[type=text]:focus{
     transition: 0.8s;
 }
 
+.SendFormButtonContainer{
+    width: 100vw;
+}
+
+.SendFormButton{
+    background-color: transparent;
+    height: fit-content;
+    font-size: 20px;
+    color: white;
+    border-radius: 15px;
+    border: 2px solid #ffdeca88;
+    padding: 5px 20px 5px 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.ResultDiv{
+    margin: auto;
+    padding: 30px 60px 30px 60px;
+    border-radius: 30px;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    margin-bottom: 80px;
+    width: fit-content;
+    height: fit-content;
+    font-size: 30px;
+    font-family: MontserratBold;
+    margin-top: 30vh;
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url("../resources/fonts/Montserrat-Bold.ttf");
+}
+
 @font-face {
     font-family: MontserratSemiBold;
     src: url("../resources/fonts/Montserrat-SemiBold.ttf");
