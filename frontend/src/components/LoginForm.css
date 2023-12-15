@@ -90,6 +90,11 @@
     font-family: MontserratBold;
 }
 
+.RegistrationFailDescription{
+    font-size: 15px;
+    font-family: MontserratSemiBold;
+}
+
 @font-face {
     font-family: MontserratBold;
     src: url("../resources/fonts/Montserrat-Bold.ttf");
@@ -98,4 +103,9 @@
 @font-face {
     font-family: MontserratLight;
     src: url("../resources/fonts/Montserrat-Light.ttf");
+}
+
+@font-face {
+    font-family: MontserratSemiBold;
+    src: url("../resources/fonts/Montserrat-SemiBold.ttf");
 }
