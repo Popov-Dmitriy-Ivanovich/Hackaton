@@ -4,31 +4,33 @@
 }
 
 .LoginForm{
+    height: fit-content;
     padding: 50px;
     width: fit-content;
     margin: auto;
     border-radius: 30px;
     border: 3px solid #ffdeca6e;
     background-color: #ffdeca15;
-}
-
-.LoginInput{
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: start;
 }
 
 .LoginLabel{
     font-family: MontserratBold;
     color: white;
     font-size: 30px;
+    margin-bottom: 10px;
 }
 
 .LoginButton{
+    margin-top: 20px;
     background-color: transparent;
     width: 100px;
     height: fit-content;
     font-size: 20px;
     color: white;
-    margin-top: 20px;
     border-radius: 15px;
     border: 2px solid #ffdeca88;
     padding: 5px;
@@ -36,6 +38,7 @@
 }
 
 .RegisterButton{
+    margin-top: 15px;
     background-color: transparent;
     width: 100px;
     height: fit-content;
@@ -49,7 +52,7 @@
 }
 
 .LoginFormInput{
-    margin-top: 25px;
+    margin-top: 15px;
     border-radius: 10px;
     background-color: transparent;
     border: 2px solid #ffdecaae;
@@ -65,6 +68,20 @@
 }
 
 .LoginFailedLabel{
+    margin-top: 15px;
+    padding: 3px 10px 3px 10px;
+    border-radius: 5px;
+    border: 2px solid #ffababc1;
+    text-align: center;
+    color: #ffefe5bc;
+    font-family: MontserratBold;
+}
+
+.RegFailedContainer{
+    padding-top: 20px;
+}
+
+.RegistrationFailedLabel{
     padding: 3px 10px 3px 10px;
     border-radius: 5px;
     border: 2px solid #ffababc1;

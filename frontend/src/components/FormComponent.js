@@ -102,7 +102,7 @@ class FormComponent extends Component{
                                                         :
                                                             ()=>{}}
                                                 >
-                                                </input>{text}
+                                                </input><span className='ButtonText'>{text}</span>
                                             </li>
                                         ))}
                                     </ul>
