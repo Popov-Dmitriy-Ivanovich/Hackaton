@@ -50,9 +50,9 @@ class TestAPI(unittest.TestCase):
 
     def test_register(self):
         correct_register = {
-            "name": "dmitriy",
-            "login": "popov",
-            "password": "ivanovich",
+            "name": "TestRegister",
+            "login": "TestRegister",
+            "password": "TestRegister",
         }
         incorrect_register = {"name": "any name", "login": "1", "password": "1"}
         with self.subTest(msg="test correct register"):
@@ -67,7 +67,7 @@ class TestAPI(unittest.TestCase):
             resp = req.request(
                 "post",
                 URL + "/api/login",
-                json={"login": "popov", "password": "ivanovich"},
+                json={"login": correct_register["login"], "password": correct_register['password']},
             )
             self.assertEqual(resp.json(), {"status": "OK"})
 
