@@ -11,149 +11,9 @@ class App extends Component {
 		login_route: '/api/login',
 		usr_login: '',
 		process: 'login',
-		form: [
-			{
-			  "text":"Выберите тип вывески",
-			  "buttons":{
-				"buttons_type": "radio",
-				"buttons_texts": [
-				  "Уличный", 
-				  "Внутренний"
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Выберите тип исполнения",
-			  "buttons":{
-				"buttons_type": "radio",
-				"buttons_texts": [
-				  "Монолитный", 
-				  "Кабинетный", 
-				  "Кабинетный алюминиевый"
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Повышенная яркость",
-			  "buttons":{
-				"buttons_type": "checkbox",
-				"buttons_texts": [
-				  "Повышенная яркость"
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Установите шаг пикселя",
-			  "buttons":{
-				"buttons_type": "radio",
-				"buttons_texts": [
-				  "2.5", 
-				  "3.07", 
-				  "3.91", 
-				  "4", 
-				  "4.81", 
-				  "5", 
-				  "5.95", 
-				  "6", 
-				  "6.25", 
-				  "6.67", 
-				  "8", 
-				  "10", 
-				  "13", 
-				  "16"
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Дополнительные параметры",
-			  "buttons":{
-				"buttons_type": "radio",
-				"buttons_texts": [
-				  "LED процессор", 
-				  "Регулируемый угол", 
-				  "Спортивный объект", 
-				  "Быстросборный", 
-				  "Радиальная"
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Выберите способ монтажа",
-			  "buttons":{
-				"buttons_type": "radio",
-				"buttons_texts": [
-				  "Без монтажа", 
-				  "На фасад", 
-				  "На ноге (1 или 2) высотой до 3 метров с фундаментом", 
-				  "На ноге (1 или 2) высотой 3—5 метров с фундаментом", 
-				  "На ноге (1 или 2) высотой 5—7 метров с фундаментом", 
-				  "Внутренний монтаж"
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Модулей по высоте",
-			  "buttons":{
-				"buttons_type": "text",
-				"buttons_texts": [
-				  ""
-				]
-			  }
-			},
-		  
-			{
-			  "text":"Модулей по ширине",
-			  "buttons":{
-				"buttons_type": "text",
-				"buttons_texts": [
-				  ""
-				]
-			  }
-			}
-		  ],
-
-		action_cards: [
-			{
-				name: "Name1",
-				description: "Action card 1 description".repeat(10)
-			},
-			{
-				name: "Name2",
-				description: "Action card 2 description".repeat(10)
-			},
-			{
-				name: "Name4",
-				description: "Action card 3 description".repeat(10)
-			}
-			,
-			{
-				name: "Name5",
-				description: "Action card 3 description".repeat(10)
-			},
-			,
-			{
-				name: "Name6",
-				description: "Action card 3 description".repeat(10)
-			},
-			,
-			{
-				name: "Name7",
-				description: "Action card 3 description".repeat(10)
-			},
-			,
-			{
-				name: "Name8",
-				description: "Action card 3 description".repeat(10)
-			}
-		],
-		ip: "192.168.111.205"
+		// ip: "192.168.111.205"
 		// ip: "localhost"
+		main_host: "https://89.232.176.33:443"
 	}
 
 	send_login = (login, password)=>{
@@ -167,15 +27,14 @@ class App extends Component {
 	render(){
 		return (
 			<div className="App">
-				<Header />
+				<Header show_menu_button={this.state.process!=='login' && this.state.process!=='menu'} go_to_menu={()=>this.set_process('menu')}/>
 				{(this.state.process === 'login') ? 
-				<LoginForm send_login={this.send_login} ip={this.state.ip}/> :
+				<LoginForm send_login={this.send_login} main_host={this.state.main_host} /> :
 				(this.state.process === 'menu') ? 
-				<Menu set_process={this.set_process} ip={this.state.ip}/>: 
+				<Menu set_process={this.set_process} main_host={this.state.main_host} login={this.state.usr_login}/>: 
 				(this.state.process === 'form') ? 
-				<FormComponent subforms={this.state.form} ip={this.state.ip} />: ''
-				// (this.state.process === 'VK') ? 
-				// <VKauth/>: ''
+				<FormComponent subforms={this.state.form} main_host={this.state.main_host} login={this.state.usr_login}/>: 
+				''
 				}
 				<Logo />
 			</div>

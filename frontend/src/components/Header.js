@@ -8,6 +8,10 @@ class Header extends Component{
                 <div className='Name'>
                     Career Guider
                 </div>
+                {this.props.show_menu_button ? 
+                <div className='MenuButton' onClick={()=>this.props.go_to_menu()}>
+                    Меню
+                </div>:''}
             </div>
         )
     }
