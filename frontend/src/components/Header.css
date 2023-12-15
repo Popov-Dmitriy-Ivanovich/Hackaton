@@ -20,6 +20,7 @@
     font-size: clamp(20px, 5vw, 30px);
     font-family: MontserratBold;
     color: white;
+    cursor: pointer;
 }
 
 .MenuButton{
@@ -35,6 +36,7 @@
     font-family: MontserratSemiBold;
     border: 3px solid #ffdeca6e;
     background-color: #ffdeca15;
+    cursor: pointer;
 }
 
 @font-face {

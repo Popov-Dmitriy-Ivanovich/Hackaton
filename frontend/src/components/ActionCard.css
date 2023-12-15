@@ -10,6 +10,7 @@
     padding: 15px;
     padding-top: 30px;
     transition: 0.3s linear;
+    cursor: pointer;
 }
 
 .ActionCard:hover{
