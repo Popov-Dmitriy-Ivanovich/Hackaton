@@ -153,4 +153,6 @@ class CoursesGenerator:
             )
         print(prof_data)
         print(cour_data)
-        return ResponseData(professions=prof_data, courses=cour_data)
+        return RequestResponse(
+            data=ResponseData(professions=prof_data, courses=cour_data)
+        )

@@ -19,6 +19,7 @@ def clear_db(conn: SingletonConnection) -> None:
     login = conn.session.query(db.LoginDataTable).all()
     cours = conn.session.query(db.CoursesTable).all()
     proff = conn.session.query(db.ProfessionsTable).all()
+    favor = conn.session.query(db.FavouritesTable).all()
     for row in users:
         conn.session.delete(row)
     for row in login:
@@ -26,6 +27,8 @@ def clear_db(conn: SingletonConnection) -> None:
     for row in cours:
         conn.session.delete(row)
     for row in proff:
+        conn.session.delete(row)
+    for row in favor:
         conn.session.delete(row)
     conn.session.commit()
 

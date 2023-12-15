@@ -34,6 +34,18 @@ class TestAPI(unittest.TestCase):
             "login": "TestRegister",
             "password": "TestRegister",
         }
+        tmp = (
+            self.conn.session.query(db.LoginDataTable)
+            .filter_by(login=correct_register["login"])
+            .first()
+        )
+        if tmp:
+            tmp2 = (
+                self.conn.session.query(db.UsersTable).filter_by(id=tmp.user_id).first()
+            )
+            self.conn.session.delete(tmp)
+            self.conn.session.delete(tmp2)
+            self.conn.session.commit()
         incorrect_register = {"name": "any name", "login": "1", "password": "1"}
         with self.subTest(msg="test correct register"):
             resp = req.request("post", URL + "/api/register", json=correct_register)
@@ -47,6 +59,9 @@ class TestAPI(unittest.TestCase):
             resp = req.request(
                 "post",
                 URL + "/api/login",
-                json={"login": correct_register["login"], "password": correct_register['password']},
+                json={
+                    "login": correct_register["login"],
+                    "password": correct_register["password"],
+                },
             )
             self.assertEqual(resp.json(), {"status": "OK"})
