@@ -16,7 +16,7 @@ class LoginForm extends Component{
 
     send_login = async() => {
           
-        await fetch(this.props.main_host + "/api/login", {
+        await fetch(this.props.main_host + this.props.login_route, {
             // agent: new Agent({
             //     rejectUnauthorized: false
             //  }),
@@ -46,7 +46,7 @@ class LoginForm extends Component{
 
     send_register = async() => {
           
-        await fetch(this.props.main_host + "/api/register", {
+        await fetch(this.props.main_host + this.props.register_route, {
             // agent: new Agent({
             //     rejectUnauthorized: false
             //  }),

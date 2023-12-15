@@ -1,0 +1,74 @@
+.ResultsComponent{
+    width: 80vw;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.ResultSection{
+    border-radius: 30px;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    margin: auto;
+    margin-top: 30px;
+    width: 30vw;
+}
+
+.ResTable{
+    border-radius: 30px;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    margin: 10px;
+    height: fit-content;
+    padding: 30px;
+}
+
+.ResTableName{
+    font-family: MontserratSemiBold;
+    font-size: 30px;
+}
+
+.CourseName{
+    font-family: MontserratSemiBold;
+    font-size: 20px;
+}
+
+.ProfessionName{
+    font-family: MontserratSemiBold;
+    font-size: 20px;
+}
+
+.CourseDescription{
+    font-family: MontserratLight;
+    font-size: 18px;
+}
+
+.ProfessionDescription{
+    font-family: MontserratLight;
+    font-size: 18px;
+}
+
+.LableNotLogined{
+    border-radius: 30px;
+    border: 3px solid #ffabab75;
+    background-color: #ffdeca15;
+    font-family: MontserratBold;
+    font-size: 30px;
+    padding: 60px;
+}
+
+@font-face {
+    font-family: MontserratLight;
+    src: url("../resources/fonts/Montserrat-Light.ttf");
+}
+
+@font-face {
+    font-family: MontserratSemiBold;
+    src: url("../resources/fonts/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: MontserratBold;
+    src: url("../resources/fonts/Montserrat-Bold.ttf");
+}

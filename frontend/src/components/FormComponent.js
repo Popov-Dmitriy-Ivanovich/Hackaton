@@ -22,7 +22,7 @@ class FormComponent extends Component{
     }
 
     componentDidMount() {
-        fetch(this.props.main_host+'/api/get_profile_form/')
+        fetch(this.props.main_host+this.props.form_route)
         .then(res => res.json())
         .then(
             (result) => {
@@ -44,7 +44,7 @@ class FormComponent extends Component{
     SendForm = async() => {
         if (Object.keys(this.state.choices).length<4 && Object.keys(this.state.choices).length>0)
         {
-            await fetch(this.props.main_host + "/api/profile_form_res", {
+            await fetch(this.props.main_host + this.props.response_route, {
                 method: 'POST',
                 headers:{
                     'content-type': 'application/json;charser=utf-8'
