@@ -42,6 +42,10 @@ class LoginForm extends Component{
         })
     }
 
+    login = () => {
+        this.setState({register: false})
+    }
+
     register = () => {
         this.setState({register: true})
     }
@@ -84,8 +88,9 @@ class LoginForm extends Component{
                     <input  style={{display:  this.state.register ? '' : 'none' }}    className='LoginFormInput NameInput'     placeholder='Name'                     onChange={(event)=>{this.setState({name: event.target.value})}}></input>
                     {(this.state.login_failed&&(!this.state.register)) ? <span className='LoginFailedLabel'>Login failed</span> :""}
                     {(this.state.registration_failed&&(this.state.register)) ? <div className='RegFailedContainer'> <span className='RegistrationFailedLabel'>Registration failed</span> </div>  :""}
-                    <button style={{display: !this.state.register ? '' : 'none' }}    className='LoginButton'    onClick={()=>{this.send_login()}}> Login    </button>
-                    <button style={{display: !this.state.register ? '' : 'none' }}    className='RegisterButton' onClick={()=>{this.register()}  }> Register </button>
+                    <button style={{display: !this.state.register ? '' : 'none' }}    className='LoginButton'    onClick={()=>{this.send_login()}}>      Login    </button>
+                    <button style={{display:  this.state.register ? '' : 'none' }}    className='LoginButton'    onClick={()=>{this.login()}}>           Login    </button>
+                    <button style={{display: !this.state.register ? '' : 'none' }}    className='RegisterButton' onClick={()=>{this.register()}  }>      Register </button>
                     <button style={{display:  this.state.register ? '' : 'none' }}    className='RegisterButton' onClick={()=>{this.send_register()}  }> Register </button>
                 </div>
             </div>
