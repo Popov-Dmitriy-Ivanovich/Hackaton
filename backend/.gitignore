@@ -1,10 +1,4 @@
-unittest/__pycache__
-unittest/resourses/test.db
-src/__pycache__
-db/__pycache__
+unit_test/resourses/test.db
 db/profilium.db
-.venv
-__pycache__
-*/__pycache__
 *__pycache__*
-*.venv*
+*venv*
