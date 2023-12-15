@@ -9,29 +9,9 @@ URL = "http://localhost:8000"
 class TestAPI(unittest.TestCase):
     def __init__(self, methodName: str = "runTest") -> None:
         self.conn = db.Connection("db/profilium.db")
-        self._clear_db()
-        self.conn.session.add(db.UsersTable(name="TestUser1"))
-        self.conn.session.add(db.LoginDataTable(login="1", password="1", user_id=1))
-        self.conn.session.commit()
         super().__init__(methodName)
 
-    def _clear_db(self):
-        users = self.conn.session.query(db.UsersTable).all()
-        login = self.conn.session.query(db.LoginDataTable).all()
-        cours = self.conn.session.query(db.CoursesTable).all()
-        proff = self.conn.session.query(db.ProfessionsTable).all()
-        for row in users:
-            self.conn.session.delete(row)
-        for row in login:
-            self.conn.session.delete(row)
-        for row in cours:
-            self.conn.session.delete(row)
-        for row in proff:
-            self.conn.session.delete(row)
-        self.conn.session.commit()
-
     def test_login(self):
-        pass
         correct_login_instance = self.conn.session.query(db.LoginDataTable).first()
         correct_login = {
             "login": correct_login_instance.login,
@@ -70,13 +50,3 @@ class TestAPI(unittest.TestCase):
                 json={"login": correct_register["login"], "password": correct_register['password']},
             )
             self.assertEqual(resp.json(), {"status": "OK"})
-
-
-# if __name__ == '__main__':
-#    print ('server should be online to perform that test!!!')
-#    r = req.request("post", "http://localhost:8000/api/login",json={'login':'1','password':'1'})
-#    print(r.text)
-#    r = req.request("post", "http://localhost:8000/api/login",json={'login':'3','password':'3'})
-#    print(r.text)
-#    r = req.request("post", "http://localhost:8000/api/get_courses")
-#    print(r.text)
