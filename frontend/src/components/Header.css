@@ -39,6 +39,27 @@
     cursor: pointer;
 }
 
+.HeaderRightPart{
+    display: flex;
+    flex-direction: row;
+}
+
+.LogoutButton{
+    display: flex;
+    height: 40px;
+    margin-top: 22.5px;
+    margin-right: 15px;
+    padding: 0px 15px 0px 15px;
+    justify-items: center;
+    align-items: center;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family: MontserratSemiBold;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    cursor: pointer;
+}
+
 @font-face {
     font-family: MontserratBold;
     src: url("../resources/fonts/Montserrat-Bold.ttf");

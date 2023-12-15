@@ -32,12 +32,18 @@ class App extends Component {
 		this.setState({process: text})
 	}
 
+	logout = () => {
+		this.setState({usr_login: '', process: 'login'})
+	}
+
 	render(){
 		return (
 			<div className="App">
 				<Header 
 					show_menu_button={this.state.process!=='login' && this.state.process!=='menu'} 
+					show_logout={this.state.process!=='login' && this.state.process!=='register'} 
 					go_to_menu={(this.state.process!=="login" && this.state.process!=="register") ? ()=>this.set_process('menu') : ()=>{}}
+					logout={this.logout}
 				/>
 				{(this.state.process === 'login') ? 
 					<LoginForm send_login={this.send_login} 

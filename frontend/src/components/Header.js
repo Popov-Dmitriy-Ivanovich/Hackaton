@@ -8,10 +8,17 @@ class Header extends Component{
                 <div className='Name' onClick={()=>this.props.go_to_menu()}>
                     Career Guider
                 </div>
-                {this.props.show_menu_button ? 
-                <div className='MenuButton' onClick={()=>this.props.go_to_menu()}>
-                    Меню
-                </div>:''}
+                <div className='HeaderRightPart'>
+                    {this.props.show_menu_button ? 
+                    <div className='MenuButton' onClick={()=>this.props.go_to_menu()}>
+                        Меню
+                    </div>:''}
+                    {this.props.show_logout ? 
+                    <div className='LogoutButton' onClick={()=>this.props.logout()}>
+                        Выйти
+                    </div>:''}
+                </div>
+                    
             </div>
         )
     }
