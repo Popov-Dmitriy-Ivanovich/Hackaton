@@ -52,6 +52,7 @@ input[type=radio]{
   
     position: relative;
     top: 4px;
+    cursor: pointer;
 }
   
 input[type=radio]:checked {
@@ -71,6 +72,7 @@ input[type=checkbox]{
   
     position: relative;
     top: 4px;
+    cursor: pointer;
 }
   
 input[type=checkbox]:checked {
