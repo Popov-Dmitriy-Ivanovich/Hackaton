@@ -135,17 +135,24 @@ for i in prof_data:
         print(
             course_unit.course_name, course_unit.description, course_unit.profession_id
         )
-conn.session.commit()
-conn.session.add(db.UsersTable(id=1, name="TestUser1"))
-conn.session.add(db.LoginDataTable(login="1", password="1", user_id=1))
-conn.session.commit()
-conn.session.add(
-    db.UsersTable(id=2, name="Alex", vk_id="2332132", access_token="afdjklajfk")
-)
-conn.session.add(
-    db.UsersTable(id=3, name="dmitriy", vk_id="31232", access_token="jldaf")
-)
-conn.session.add(db.LoginDataTable(login="Alex", password="ILoveMath", user_id=2))
-conn.session.add(db.LoginDataTable(login="dmitriy", password="ILoveMath", user_id=3))
-conn.session.commit()
+
+users = [
+    db.UsersTable(id=1 ,name='TestUser'),
+    db.UsersTable(id=2, name='TestUser', vk_id='TestVKID'),
+    db.UsersTable(id=3, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
+    db.UsersTable(id=4, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
+    db.UsersTable(id=5, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
+    db.UsersTable(id=6, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
+]
+logins = [
+    db.LoginDataTable(login='TestLogin1', password='TestPassword1', user_id=1),
+    db.LoginDataTable(login='TestLogin2', password='TestPassword2', user_id=2),
+    db.LoginDataTable(login='TestLogin3', password='TestPassword3', user_id=3),
+    db.LoginDataTable(login='TestLogin4', password='TestPassword4', user_id=4),
+    db.LoginDataTable(login='TestLogin5', password='TestPassword5', user_id=5),
+    db.LoginDataTable(login='TestLogin6', password='TestPassword6', user_id=6),
+]
+for i in logins+users:
+    conn.session.add(i)
+    conn.session.commit()
 # https://www.youtube.com/watch?v=jfgNz4s99IA

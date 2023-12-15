@@ -12,7 +12,7 @@ class TestMainFeatures(unittest.TestCase):
 
     def test_profile_form_process(self):
         req_body = {
-            "login": "dmitriy",
+            "login": "TestLogin5",
             "choises": [
                 "Медицина и здравоохранение",
                 "Искусство и развлечения",
@@ -47,7 +47,7 @@ class TestMainFeatures(unittest.TestCase):
                 self.assertTrue(instance.name in req_body["choises"])
 
     def test_empty_profile_form_process(self):
-        req_body = {"login": "Alex", "choises": []}
+        req_body = {"login": "TestLogin4", "choises": []}
 
         resp = request("post", URL + "/api/profile_form_res", json=req_body)
 
@@ -79,9 +79,9 @@ class TestMainFeatures(unittest.TestCase):
         # возращает ошибку если аккаунт ВК не привязан
         # работает независимо от прохождения пользователем формы
         # в результате есть хотябы одна профессия и хотябы один курс
-        corr_login_no_form = "Alex"
-        corr_login_with_form = "dmitriy"
-        wrong_login = "1"
+        corr_login_no_form = "TestLogin4"
+        corr_login_with_form = "TestLogin5"
+        wrong_login = "TestLogin1"
         print(
             request(
                 "post",

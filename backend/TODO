@@ -1,6 +1,4 @@
-ТЕСТОВОЕ ПОКРЫТИЕ ДЛЯ CoursesGenerator
-test /api/get_courses
-test /api/profile_form_res
+
 
 <!-- https://oauth.vk.com/authorize?client_id=51813528&display=page&redirect_uri=https://89.232.176.33:443/api/login_index&scope=friends&response_type=code&v=5.131&state=Alex
 

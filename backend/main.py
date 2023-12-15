@@ -34,18 +34,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-class Course:
-    def __init__(self, name: str, desc: str) -> None:
-        self.name = name
-        self.description = desc
-
-
-class CoursesList:
-    def __init__(self, courses: list) -> None:
-        self.data = {"courses": courses}
-
-
 @app.get("/")
 async def serve_spa(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
