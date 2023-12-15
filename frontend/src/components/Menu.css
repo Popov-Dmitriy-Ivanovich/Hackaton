@@ -4,4 +4,5 @@
     width: 80vw;
     justify-content: center;
     margin-top: 50px;
+    flex-wrap: wrap;
 }
