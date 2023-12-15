@@ -3,11 +3,10 @@ from collections import Counter
 import pandas as pd
 import time
 
-token = "" # Сюда токен пользователя
-vk_api = vk.API(token)
 
 
-def get_members(groupid):  # Получаем первую 10000 подписчиков
+def get_members(groupid, token):  # Получаем первую 10000 подписчиков
+    vk_api = vk.API(token)
     first = vk_api.groups.getMembers(group_id=groupid, v=5.92)
     data = first["items"]
 
@@ -50,16 +49,19 @@ def enter_sub_data(filename):  # Выводим паблики
     return b
 
 
-def get_user_subscriptions(userid):  # Получаем подписки пользователей
+def get_user_subscriptions(userid, token):  # Получаем подписки пользователей
+    vk_api = vk.API(token)
     try:
         response = vk_api.users.getSubscriptions(user_id=userid, v=5.92)
-        subscriptions = response["groups"]["items"]
+        subscriptions = response["groups"]["items"][:15]
+        print(subscriptions)
         return subscriptions
     except Exception as e:
         return None
 
 
-def get_groups_info(groupid):  #  Получаем информацию о группах
+def get_groups_info(groupid, token):  #  Получаем информацию о группах
+    vk_api = vk.API(token)
     try:
         response = vk_api.groups.getById(group_id=groupid, fields="description", v=5.92)
         name = response[0]["name"]
@@ -69,7 +71,8 @@ def get_groups_info(groupid):  #  Получаем информацию о гр�
         return None
 
 
-def groupByName(data):  # Получаем айдишник по названию
+def groupByName(data, token):  # Получаем айдишник по названию
+    vk_api = vk.API(token)
     try:
         response = vk_api.groups.getById(group_id=data, v=5.92)
         groupId = response[0]["id"]
@@ -78,7 +81,7 @@ def groupByName(data):  # Получаем айдишник по названи�
         return None
 
 
-def common_subs(data):  # Выводим топ-10 пабликов
+def common_subs(data, token):  # Выводим топ-10 пабликов
     all_subs_flat = [sub for sublist in data["subs"] for sub in sublist]
     subs_counter = Counter(all_subs_flat)
     top_subs_count = 10
@@ -88,7 +91,7 @@ def common_subs(data):  # Выводим топ-10 пабликов
     print(top_subs)
     for sub, count in top_subs:
         if get_groups_info(sub):
-            name, description = get_groups_info(sub)
+            name, description = get_groups_info(sub, token)
             time.sleep(3)
             group_info["group_id"].append(sub)
             group_info["name"].append(name)
@@ -97,10 +100,10 @@ def common_subs(data):  # Выводим топ-10 пабликов
     return pd.DataFrame(group_info)
 
 
-def analyze_subs(members):  # Собираем информацию о пабликах
+def analyze_subs(members, token):  # Собираем информацию о пабликах
     groups = {"user_id": [], "subs": []}
     for i in members:
-        user_subs = get_user_subscriptions(i)
+        user_subs = get_user_subscriptions(i, token)
         if user_subs:
             groups["user_id"].append(i)
             groups["subs"].append(user_subs)
@@ -110,8 +113,7 @@ def analyze_subs(members):  # Собираем информацию о пабл�
 
 # Получаем данные из вконтакте
 
-def get_vk_data():
-    token = ""
+def get_vk_data(token):
     vk_api = vk.API(token)
 
     dict = {
@@ -122,11 +124,11 @@ def get_vk_data():
 
     for con in dict:
         res = dict[con]
-        idgroup = groupByName(res)
+        idgroup = groupByName(res, token)
 
-        members = get_members(idgroup)
-        data = analyze_subs(members)
-        com = common_subs(data)
+        members = get_members(idgroup, token)
+        data = analyze_subs(members, token)
+        com = common_subs(data, token)
 
         print(com)
         com.to_csv(
