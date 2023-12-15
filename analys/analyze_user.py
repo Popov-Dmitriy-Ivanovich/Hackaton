@@ -7,33 +7,33 @@ from cleaning import clean_user_data, create_keys
 import unicodedata
 
 created_stopwords = (
-    "analys/stopwords/custom_stopwords.txt"  # Путь к созданным стоп-словам
+    "/home/evm/Hackaton/analys/stopwords/custom_stopwords.txt"  # Путь к созданным стоп-словам
 )
 
-token = ""  # Сюда токен пользователя
-vk_api = vk.API(token)
 
-
-def get_user_subscriptions(id_user):  # Получаем подписки пользователей (int id_user)
+def get_user_subscriptions(
+    id_user, token
+):  # Получаем подписки пользователей (int id_user)
+    vk_api = vk.API(token)
     try:
         response = vk_api.users.getSubscriptions(user_id=id_user, v=5.92)
-        subscriptions = response["groups"]["items"]
+        subscriptions = response["groups"]["items"][:15]
         return subscriptions
     except Exception as e:
         return None
 
 
-def get_user_keys(id_user):  # Получаем ключевые слова пользователя
-    k = get_user_subscriptions(id_user)
+def get_user_keys(id_user, token):  # Получаем ключевые слова пользователя
+    k = get_user_subscriptions(id_user, token)
 
     filename = str(id_user) + "_piblics.csv"
 
     group_info = {"name": [], "description": []}
 
     for sub in k:
-        if get_groups_info(sub):
-            time.sleep(3)
-            name, description = get_groups_info(sub)
+        if get_groups_info(sub, token):
+            time.sleep(1) # А лучше 3
+            name, description = get_groups_info(sub, token)
             group_info["name"].append(name)
             group_info["description"].append(description)
         com = pd.DataFrame(group_info)
@@ -57,7 +57,9 @@ def analyze_user(
                 category in user_choice
             ):  # Нет смысла проходиться по категориям, которые неинтересны пользователю
                 for file_name, profession in keys.items():
-                    filename = "правильный/путь/professions_keys/" + file_name # Правильно прописываем путь к папке с keys
+                    filename = (
+                        "/home/evm/Documents/professions_keys/" + file_name
+                    )  # Правильно прописываем путь к папке с keys
                     filename = unicodedata.normalize("NFKC", filename)
                     df = pd.read_csv(filename + "_keys.csv", header=None)
 
@@ -70,17 +72,17 @@ def analyze_user(
                             print(i)
                             output_file.write(i + "\n")
 
-    print(user_data)
 
     sorted_user_data = sorted(user_data.items(), key=lambda x: x[1], reverse=True)
 
-    top_3 = sorted_user_data[:3]
+    top_3 = sorted_user_data[:3] #list типа [('Учитель', 56), ('Археолог', 37), ('Библиотекарь', 35)]
     for profession, value in top_3:
         print(f"{profession}: {value}")
     return top_3
 
 
 user_choice = ["Наука и образование"]  # Передаем массив с выбранными специальностями
-id_user = 417049821
-data = get_user_keys(id_user)
-analyze_user(user_choice, data, id_user)
+token = "f34ae2e5f34ae2e5f34ae2e502f05c7740ff34af34ae2e5963e27c3275f6ed32ea447e9"
+id_user = 425735901
+data = get_user_keys(id_user, token)
+k = analyze_user(user_choice, data, id_user)
