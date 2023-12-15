@@ -82,7 +82,7 @@ def analyze_user(
 
 
 user_choice = ["Наука и образование"]  # Передаем массив с выбранными специальностями
-token = "f34ae2e5f34ae2e5f34ae2e502f05c7740ff34af34ae2e5963e27c3275f6ed32ea447e9"
+token = ""
 id_user = 425735901
 data = get_user_keys(id_user, token)
 k = analyze_user(user_choice, data, id_user)
