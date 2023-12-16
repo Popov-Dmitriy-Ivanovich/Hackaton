@@ -65,15 +65,7 @@ class UserAnaliser(object):
     def get_user_keys(self):
         k = self._vk_resolver.get_user_subscriptions()
         group_info = {"name": [], "description": []}
-
-        for sub in k:
-            time.sleep(2)
-
-            tmp = self._vk_resolver.get_group_info(sub)
-            name, description = tmp
-            group_info["name"].append(name)
-            group_info["description"].append(description)
-        
+        group_info = self._vk_resolver.get_group_info(k)
         com = pd.DataFrame(group_info)
         df = self.clean_user_data(com)
         keys = self.create_keys(df)
