@@ -1,61 +1,71 @@
-.ResultsComponent{
-    width: 80vw;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-}
-
-.ResultSection{
-    border-radius: 30px;
-    border: 3px solid #ffdeca6e;
-    background-color: #ffdeca15;
-    margin: auto;
-    margin-top: 30px;
-    width: 30vw;
-}
-
-.ResTable{
-    border-radius: 30px;
-    border: 3px solid #ffdeca6e;
-    background-color: #ffdeca15;
-    margin: 10px;
-    height: fit-content;
-    padding: 30px;
-}
-
-.ResTableName{
-    font-family: MontserratSemiBold;
-    font-size: 30px;
-}
 
 .CourseName{
-    font-family: MontserratSemiBold;
-    font-size: 20px;
-}
-
-.ProfessionName{
-    font-family: MontserratSemiBold;
-    font-size: 20px;
+    font-family: MontserratBold;
+    font-size: clamp(12px, 2.2vw, 20px);
 }
 
 .CourseDescription{
     font-family: MontserratLight;
-    font-size: 18px;
+    font-size: clamp(11px, 2.1vw, 17px);
+    text-align: justify;
+    text-align-last: center
 }
 
-.ProfessionDescription{
-    font-family: MontserratLight;
-    font-size: 18px;
-}
-
-.LableNotLogined{
-    border-radius: 30px;
+.LableError{
+    /* width: clamp(300px, 80vw, 1000px); */
+    border-radius: clamp(20px, 3vw, 30px);
     border: 3px solid #ffabab75;
     background-color: #ffdeca15;
     font-family: MontserratBold;
-    font-size: 30px;
-    padding: 60px;
+    font-size: clamp(20px, 3vw, 50px);
+    padding: clamp(10px, 3vw, 60px);
+    margin: auto;
+    margin-top: 30vh;
+    width: 80vw;
+}
+
+.ResultsContainer{
+    padding: 0px 0px 50px 0;
+}
+
+.CoursesSection{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+}
+
+.ResultSection{
+    border-radius: clamp(20px, 3vw, 30px);
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    margin: clamp(20px, 2.5vw, 25px) 10px 15px clamp(20px, 2.5vw, 25px);
+    width: fit-content;
+    max-width: 300px;
+    padding: clamp(15px, 2.2vw, 20px);
+}
+
+.CoursesLable{
+    font-size: clamp(20px, 3.5vw, 40px);
+    max-width: 80vw;
+    margin: auto;
+    font-family: MontserratBold;
+    margin-top:30px;
+    border-radius: clamp(10px, 2vw, 20px);
+    background-color: #ffdeca40;
+    padding: clamp(25px, 4vw, 40px) 10px clamp(25px, 4vw, 40px) 10px;
+}
+
+.WaitingLable{
+    font-size: clamp(20px, 3.5vw, 40px);
+    max-width: 80vw;
+    margin: auto;
+    font-family: MontserratBold;
+    margin-top:30px;
+    border-radius: clamp(10px, 2vw, 20px);
+    background-color: #ffdeca40;
+    padding: clamp(25px, 4vw, 40px) 10px clamp(25px, 4vw, 40px) 10px;
+    z-index: 1000;
 }
 
 @font-face {

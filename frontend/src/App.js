@@ -39,6 +39,7 @@ class App extends Component {
 	render(){
 		return (
 			<div className="App">
+				<div id="preloader_malc"><div></div></div>
 				<Header 
 					show_menu_button={this.state.process!=='login' && this.state.process!=='menu'} 
 					show_logout={this.state.process!=='login' && this.state.process!=='register'} 

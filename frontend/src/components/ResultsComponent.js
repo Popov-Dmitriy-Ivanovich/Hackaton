@@ -1,12 +1,16 @@
 import React, {Component} from 'react'
 import './ResultsComponent.css'
+import Loading from './Loading.js'
 
 class ResultsComponent extends Component{
 
     state={
         courses:     [],
         professions: [],
-        vk_logined:  false
+        vk_logined:  false,
+        fetched: false,
+        error: false,
+        error_text: ''
     }
 
     componentDidMount =
@@ -19,49 +23,59 @@ class ResultsComponent extends Component{
         })
         .then(responce => {
             responce.json().then(res=>{
-                if (res.err !== 'user has not logged in through VK')
+                console.log(res)
+                if (!res.err)
                 {
-                    this.setState({vk_logined:  true                })
-                    this.setState({courses:     res.data.courses    })
-                    this.setState({professions: res.data.professions})
+                    this.setState({vk_logined: true, courses: res.data.courses, professions: res.data.professions}, this.setState({fetched: true}))
+                }
+                else{
+                    if (res.err === 'user has not logged in through VK')
+                    {
+                        this.setState({fetched: true, error: true},
+                            this.setState({error_text: 'Вы не авторизовались в ВК'})
+                        )
+                    }
+                    else{
+                        this.setState({fetched: true, vk_logined: true, error: true},
+                            this.setState({error_text: 'Произошла ошибка'})
+                        )
+                    }
                 }
             })
         })
 
     render(){
         return(
-            <div className='ResultsComponent'>
-                <table className='ResTable' style={{display: this.state.vk_logined ? '' : 'none' }}>
-                    <tr className='ResTableName'>Вам подходят следующие курсы:</tr>
+            <div className='ResultsContainer'>
+                {!this.state.fetched ? <Loading />: ''}
+                <div style={{display: this.state.fetched ? '' : 'none'}}>
+                    <div className='CoursesLable' style={{display: !this.state.error ? '' : 'none'}}>Вам подходят следующие курсы:</div>
+                </div>
+                <div className='CoursesSection' style={{display: !this.state.error ? '' : 'none'}}>
                     {this.state.courses.map(course=>
-                        <tr>
-                            <td>
-                                <div className='ResultSection'>
-                                    <span className='CourseName'>{course.name}</span>
-                                    <p className='CourseDescription'>{course.description}</p>
-                                </div>
-                            </td>
-                            
-                        </tr>
+                        <div className='ResultSection'>
+                            <span className='CourseName'>{course.name}</span>
+                            <p className='CourseDescription'>{course.description}</p>
+                        </div>
                     )}
-                </table>
-                <table className='ResTable' style={{display: this.state.vk_logined ? '' : 'none' }}>
-                    <tr className='ResTableName'>Вам подходят следующие профессии:</tr>
+                </div>
+                <div style={{display: this.state.fetched ? '' : 'none'}}>
+                    <div className='CoursesLable' style={{display: !this.state.error ? '' : 'none'}}>Вам подходят следующие профессии:</div>
+                </div>
+                <div className='CoursesSection' style={{display: !this.state.error ? '' : 'none'}}>
                     {this.state.professions.map(profession=>
-                        <tr>
-                            <td>
-                                <div className='ResultSection'>
-                                    <span className='ProfessionName'>{profession.name}</span>
-                                    <p className='ProfessionDescription'>{profession.description}</p>
-                                </div>
-                            </td>
-                            
-                        </tr>
+                        <div className='ResultSection'>
+                            <span className='CourseName'>{profession.name}</span>
+                            <p className='CourseDescription'>{profession.description}</p>
+                        </div>
                     )}
-                </table>
-                <div style={{display: !this.state.vk_logined ? '' : 'none' }} className='LableNotLogined'>Вы не авторизовались в ВК</div>
+                </div>
+                <div style={{display: this.state.fetched ? '' : 'none'}}>
+                    <div style={{display: this.state.fetched && this.state.error ? '' : 'none' }} className='LableError'>{this.state.error_text}</div>
+                </div>
+                
+                
             </div>
-            
         )
     }
 }

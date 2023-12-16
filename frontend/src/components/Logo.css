@@ -1,6 +1,8 @@
 .LogoImg{
-    height: 32px;
-    width: 208px;
+    height: min(calc(1em * 32 / 15), 40vw/100vh);
+    width:  min(calc(1em * 208 / 15), 40vw);
+    /* height: 32px;
+    width:  208px; */
     position: absolute;
     right: 15px;
     bottom: 15px;
