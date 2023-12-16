@@ -7,6 +7,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 from analys.vk_api_resolver import VkApiResolver
 
+
 CREATED_STOPWORDS_PATH = "analys/resourses/stopwords/custom_stopwords.txt"  
 PROF_KEY_WORDS_PATH = 'analys/resourses/professions_keywords.json'
 USER_DATA_OBJ_PATH = 'analys/resourses/user_data.json'

@@ -8,6 +8,8 @@ from db.db_classes import (
 )
 from pydantic import BaseModel
 
+TEST_ID = '189011945'
+TEST_TOKEN = 'vk1.a.jQ-lueZqKIG1yx9aHBZEhqnWAT8MAOsu0xHgWxIsW2k0jqH74KqwKY0inb_SZKwYZ5bo-h08kxJ3dJxi5pn7e361ZSkhw0h9uIZ-W113Slsk_Gmoz6gCskg1PpSt0E7LvNqDl0mNSdQOpEzF1HOekA3wVUcnaOlT-Z2UUiK80FOJUfSWxYGYargPP4mqGax3'
 
 class Profession:
     def __init__(self, name: str) -> None:
@@ -61,22 +63,33 @@ for i in prof_data:
         )
 
 users = [
-    db.UsersTable(id=1 ,name='TestUser'),
+    db.UsersTable(id=1 ,name='TestNoVKIDUser'),
     db.UsersTable(id=2, name='TestUser', vk_id='TestVKID'),
     db.UsersTable(id=3, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
     db.UsersTable(id=4, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
     db.UsersTable(id=5, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
     db.UsersTable(id=6, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
+    db.UsersTable(id=7, name='TestVkIDUserNoFav', vk_id=TEST_ID, access_token=TEST_TOKEN),
+    db.UsersTable(id=8, name='TestVkIDUserWithFav', vk_id=TEST_ID, access_token=TEST_TOKEN),
+    db.UsersTable(id=9, name='TestUser', vk_id='TestVKID', access_token='TESTTOKEN'),
 ]
 logins = [
-    db.LoginDataTable(login='TestLogin1', password='TestPassword1', user_id=1),
+    db.LoginDataTable(login='TestLogin1', password='TestPassword1', user_id=9),
+    db.LoginDataTable(login='TestNoVkIDUser', password='TestPassword1', user_id=1),
     db.LoginDataTable(login='TestLogin2', password='TestPassword2', user_id=2),
     db.LoginDataTable(login='TestLogin3', password='TestPassword3', user_id=3),
     db.LoginDataTable(login='TestLogin4', password='TestPassword4', user_id=4),
     db.LoginDataTable(login='TestLogin5', password='TestPassword5', user_id=5),
     db.LoginDataTable(login='TestLogin6', password='TestPassword6', user_id=6),
+    db.LoginDataTable(login='TestVkIdUserNoFav', password='TestPassword6', user_id=7),
+    db.LoginDataTable(login='TestVkIdUserWithFav', password='TestPassword6', user_id=8),
 ]
 for i in logins+users:
     conn.session.add(i)
     conn.session.commit()
+
+conn.session.add(db.FavouritesTable(name='Образование',user_id = 8))
+conn.session.add(db.FavouritesTable(name='Медицина и здравоохранение',user_id = 8))
+conn.session.add(db.FavouritesTable(name='Сфера обслуживания',user_id = 8))
+conn.session.add(db.FavouritesTable(name='Архитектура, строительство и недвижимость',user_id = 8))
 # https://www.youtube.com/watch?v=jfgNz4s99IA

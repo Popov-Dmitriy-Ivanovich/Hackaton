@@ -44,8 +44,8 @@ class TestApiLogin (unittest.TestCase):
                     body = {'login':log_data[0]}
                 if log_data[0]==None and log_data[1]==None:
                     body = {}
-                self.assertTrue(log_data[2].check_ex(request('post',URL,json=body)))
+                self.assertTrue(log_data[2].check_ex(request('post',URL,json=body)),msg=f"{log_data}")
                 if log_data[2]==expect_ok:
-                    self.assertNotEqual(db_handler.get_login_entity(log_data[0]),None)
-                    self.assertEqual(db_handler.get_login_entity(log_data[0]).login,log_data[0])
-                    self.assertEqual(db_handler.get_login_entity(log_data[0]).password,log_data[1])
+                    self.assertNotEqual(db_handler.get_login_entity(log_data[0]),None,msg=f"{log_data}, logged in but db has no login entity")
+                    self.assertEqual(db_handler.get_login_entity(log_data[0]).login,log_data[0],msg=f"{log_data} login with wrong login")
+                    self.assertEqual(db_handler.get_login_entity(log_data[0]).password,log_data[1],msg=f"{log_data} login with wrong password")

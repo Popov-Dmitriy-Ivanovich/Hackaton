@@ -79,9 +79,9 @@ class TestMainFeatures(unittest.TestCase):
         # возращает ошибку если аккаунт ВК не привязан
         # работает независимо от прохождения пользователем формы
         # в результате есть хотябы одна профессия и хотябы один курс
-        corr_login_no_form = "TestLogin4"
-        corr_login_with_form = "TestLogin5"
-        wrong_login = "TestLogin1"
+        corr_login_no_form = "TestVkIdUserNoFav"
+        corr_login_with_form = "TestVkIdUserWithFav"
+        wrong_login = "TestNoVkIDUser"
         print(
             request(
                 "post",

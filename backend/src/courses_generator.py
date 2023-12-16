@@ -10,7 +10,7 @@ from db.db_classes import (
 from typing import List
 from analys.analyze_user import UserAnaliser
 import random
-
+from ratelimit import limits, sleep_and_retry
 
 class CoursesRequestData(BaseModel):
     login: str
@@ -157,3 +157,9 @@ class CoursesGenerator:
         return RequestResponse(
             data=ResponseData(professions=prof_data, courses=cour_data)
         )
+
+@sleep_and_retry
+@limits(calls=1, period=1)
+def get_courses(login):
+    handler = CoursesGenerator()
+    return handler.execute(login)
