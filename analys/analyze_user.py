@@ -85,7 +85,7 @@ class UserAnaliser(object):
             if category in self._user_choise  or len(self._user_choise)==0:
                 for profession, normalized_words in keys.items():
                     for i in user_keywords[0]:
-                        if i in normalized_words.values:
+                        if i in normalized_words:
                             self._user_data[profession] += 1
 
         sorted_user_data = sorted(self._user_data.items(), key=lambda x: x[1], reverse=True)
