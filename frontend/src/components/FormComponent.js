@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import './FormComponent.css'
 
-
 class FormComponent extends Component{
     state={
         subforms: [],
         choices: [],
-        form_was_sended: 'not'
+        form_was_sended: 'not',
+        form_error_description: ''
     }
     constructor(props){
         super(props);
@@ -65,18 +65,27 @@ class FormComponent extends Component{
         }
         else{
             this.setState({form_was_sended: 'failed'})
+            this.setState({form_error_description: 'Количество ответов должно быть от 1 до 3'})
         }
         
+    }
+
+    reset_form = () => {
+        this.setState({
+            choices: [],
+            form_was_sended: 'not',
+            form_error_description: ''
+        })
     }
 
     render(){
         return(
             <div>
                 <div className='ResultDiv' style={{display: !(this.state.form_was_sended==='not') ? '' : 'none' }}>
-                    <div>
+                    {/* <div className='FormErrorContainer'> */}
                         {this.state.form_was_sended==='success'? 'Форма отправлена успешно' : ''}
-                        {this.state.form_was_sended==='failed' ? 'Произошла ошибка'         : ''}
-                    </div>
+                        {this.state.form_was_sended==='failed' ? <div><span className='FormErrorLable'>Произошла ошибка</span> <br/> <span className='FormErrorDescription'>{this.state.form_error_description}</span><br/><button className='DropFormButton' onClick={this.reset_form}>Заполнить форму заново</button></div>         : ''}
+                    {/* </div> */}
                 </div>
                 <div className='FormContainer' style={{display: (this.state.form_was_sended==='not') ? '' : 'none' }}>
                     <ul className="Form_ul">
@@ -85,10 +94,10 @@ class FormComponent extends Component{
                                 <div className='subform_container'>
                                 <div className='subform_lable'>{subform.text}</div>
                                 {
-                                    <ul style={{listStyle: 'none'}}>
+                                    <ul style={{listStyle: 'none', paddingInlineStart: 'clamp(10px, 5vw, 40px)'}}>
                                         {subform.buttons.buttons_texts.map((text)=>(
                                             <li>
-                                                <input
+                                                <label className='LableInput'><input
                                                     className='FormInput'
                                                     type={subform.buttons.buttons_type} 
                                                     name={subform.text} 
@@ -102,7 +111,7 @@ class FormComponent extends Component{
                                                         :
                                                             ()=>{}}
                                                 >
-                                                </input><span className='ButtonText'>{text}</span>
+                                                </input><span className='ButtonText'>{text}</span></label>
                                             </li>
                                         ))}
                                     </ul>

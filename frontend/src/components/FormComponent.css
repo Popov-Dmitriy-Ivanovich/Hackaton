@@ -12,7 +12,7 @@
     margin: auto;
     display: flex;
     justify-content: center;
-    padding-bottom: 50px;
+
 }
 
 .subform_container{
@@ -21,7 +21,6 @@
     background-color: #ffdeca15;
     padding: 15px;
     padding-top: 30px;
-    padding-bottom: 30px;
     margin-top: 30px;
     text-align: left;
     font-family: MontserratLight;
@@ -31,13 +30,6 @@
     font-family: MontserratSemiBold;
     margin-bottom: 10px;
 }
-
-/* .FormInput{
-    border-radius: 5px;
-    border: 3px solid #ffdeca6e;
-    background-color: transparent;
-
-} */
 
 input[type=radio]{
     appearance: none;
@@ -61,7 +53,7 @@ input[type=radio]:checked {
 
 input[type=checkbox]{
     appearance: none;
-  
+    display: inline-block;
     border-radius: 10%;
     width: 16px;
     height: 16px;
@@ -98,11 +90,21 @@ input[type=text]:focus{
     transition: 0.8s;
 }
 
+.LableInput{
+    display: block;
+    margin-left:23px;
+  }
+
+  .LableInput input[type='checkbox'] {
+    margin-left:-23px;
+  }
+
 .SendFormButtonContainer{
     width: 100vw;
 }
 
 .SendFormButton{
+    margin-top: 20px;
     background-color: transparent;
     height: fit-content;
     font-size: 20px;
@@ -111,7 +113,6 @@ input[type=text]:focus{
     border: 2px solid #ffdeca88;
     padding: 5px 20px 5px 20px;
     cursor: pointer;
-    margin-bottom: 10px;
 }
 
 .ResultDiv{
@@ -121,19 +122,36 @@ input[type=text]:focus{
     border: 3px solid #ffdeca6e;
     background-color: #ffdeca15;
     margin-bottom: 80px;
-    width: fit-content;
-    height: fit-content;
+    max-width: 400px;
     font-size: 30px;
     font-family: MontserratBold;
-    margin-top: 30vh;
+    margin-top: 25vh;
 }
 
 .ButtonText{
-    font-size: 20px;
+    font-size: clamp(15px, 3vw, 20px);
 }
 
 .subform_lable{
-    font-size: 23px;
+    font-size: clamp(18px, 2.5vw, 23px)
+}
+
+.FormErrorDescription{
+    font-family: MontserratSemiBold;
+    font-size: 22px;
+}
+
+.DropFormButton{
+    background-color: transparent;
+    height: fit-content;
+    font-family: MontserratSemiBold;
+    font-size: 22px;
+    color: white;
+    border-radius: 15px;
+    border: 2px solid #ffdeca88;
+    padding: 5px 20px 5px 20px;
+    cursor: pointer;
+    margin-top: 30px;
 }
 
 @font-face {

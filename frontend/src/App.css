@@ -5,6 +5,8 @@
   background: linear-gradient(to bottom right, blue 10%, #ffbe98 100%);
   margin: 0px;
   position: relative;
+  padding-bottom: 70px;
+  height: fit-content;
 }
 
 .App-logo {
