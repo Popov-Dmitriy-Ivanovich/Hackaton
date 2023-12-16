@@ -2,7 +2,7 @@ import vk
 from collections import Counter
 import pandas as pd
 import time
-
+import json
 
 
 def get_members(groupid, token):  # Получаем первую 10000 подписчиков
@@ -62,13 +62,48 @@ def get_user_subscriptions(userid, token):  # Получаем подписки 
 
 def get_groups_info(groupid, token):  #  Получаем информацию о группах
     vk_api = vk.API(token)
+    group_info = {"name": [], "description": []}
     try:
-        response = vk_api.groups.getById(group_id=groupid, fields="description", v=5.92)
-        name = response[0]["name"]
-        descr = response[0]["description"]
-        return name, descr
+        response = vk_api.groups.getById(
+            group_ids=groupid, fields="description", v=5.92
+        )
+        for i in response:
+            group_info["name"].append(i["name"])
+            group_info["description"].append(i["description"])
+
     except Exception as e:
-        return None
+        pass
+
+    return group_info
+
+
+def get_groups_info_execute(group_ids, token):  # неактуально, но возможно пригодится
+    print(group_ids)
+    vk_api = vk.API(token)
+    code = """
+        var result = [];
+       
+        %s.forEach(function(groupId){
+            var info = API.groups.getById(
+                {
+                    {group_ids: groupId,
+                    fields: "description"}
+                    });
+            result.push(info[0]);
+            console.log(info);
+        });
+        
+        return result;"""
+
+    try:
+        code = code % json.dumps(group_ids)  # вместо %s подставит group_ids
+        print(
+            vk_api.execute(code)
+        )  # TypeError: APIMethod.__call__() takes 1 positional argument but 2 were given
+        response = vk_api.execute(code)
+        return [(item["name"], item["description"]) for item in response]
+    except Exception as e:
+        return []
 
 
 def groupByName(data, token):  # Получаем айдишник по названию
@@ -113,13 +148,12 @@ def analyze_subs(members, token):  # Собираем информацию о п
 
 # Получаем данные из вконтакте
 
+
 def get_vk_data(token):
     vk_api = vk.API(token)
 
     dict = {
         "Паблик": "public",
-       
-
     }
 
     for con in dict:
