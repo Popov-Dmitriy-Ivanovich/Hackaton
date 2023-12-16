@@ -36,5 +36,4 @@ backend/templates
 *venv*
 analyz/data
 *__pycache__*
-backend/analys*
 analys/data*
