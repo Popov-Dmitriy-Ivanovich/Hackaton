@@ -4,14 +4,13 @@ import os
 import pymorphy3 # или pymorphy 2
 from nltk.corpus import stopwords
 import pandas as pd
+import json
 
 nltk.download("stopwords")  # Стоп-слова из nltk
 
 stop_words = set(stopwords.words("russian"))
 
 morph = pymorphy3.MorphAnalyzer()
-
-created_stopwords = "custom_stopwords.txt"  # Стоп-слова, созданные вручную -- здесь необязательно менять, тк больше собираем инфу из вк
 
 
 def contains_special_characters(text):  # есть ли спец-символы
@@ -45,9 +44,8 @@ def clean_data(filename):  # Приводим csv в стандартный ви
     return df
 
 
-def clean_user_data(filename):  # приводим в стандартный вид подписки пользователя
-    df = pd.read_csv(filename)
-
+def clean_user_data(df):  # приводим в стандартный вид подписки пользователя
+    
     news = ["name", "description"]
     df.columns = news
     return df
@@ -55,7 +53,7 @@ def clean_user_data(filename):  # приводим в стандартный в�
 
 def create_keys(df, created_stopwords):  # создаем список ключевых слов
     with open(created_stopwords, "r", encoding="utf-8") as file:
-        my_stopwords = set(file.read().splitlines())
+        my_stopwords = set(json.load(file).get("stopwords", []))
 
     keys = []
 
@@ -94,27 +92,6 @@ def create_keys(df, created_stopwords):  # создаем список ключ�
     return pd.DataFrame(keys)
 
 
-def find_keys_files(directory):  # Ищем csv-файлы профессий
-    keys_files = []
-
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if ".csv" in file:
-                keys_files.append(os.path.join(os.path.relpath(root, directory), file))
-
-    return keys_files
 
 
-def clean_final_subs():
-    directory_path = "/content/drive/MyDrive/professions"
 
-    keys_files_list = find_keys_files(directory_path)
-
-    for file_path in keys_files_list:
-        filename = "/content/drive/MyDrive/professions/" + file_path
-        df = clean_data(filename)
-
-        keys = create_keys(df, created_stopwords)
-        com = pd.DataFrame(keys)
-
-        com.to_csv(filename[:-4] + "_keys.csv", header=False, index=False)

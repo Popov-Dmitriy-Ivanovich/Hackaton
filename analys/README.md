@@ -2,10 +2,10 @@
 
 Необходимые данные
 
-token (str)
+token (str) 
 id_user (int)
 user_choice (array of str)
 
-В prof_info в переменной file_mapping пути к профессиям и сами профессии, в user_data - счетчик профессий
+Теперь ключевые слова профессий хранятся в /professions_keys/keys_data.json
 
-Необходимо правильно прописать пути к папке с keys, а также с stopwords
+Стоп- слова в stopwords/custom_stopwords.json
