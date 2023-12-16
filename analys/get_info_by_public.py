@@ -68,6 +68,7 @@ def get_groups_info(groupid, token):  #  Получаем информацию �
         descr = response[0]["description"]
         return name, descr
     except Exception as e:
+        print(e)
         return None
 
 

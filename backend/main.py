@@ -51,7 +51,7 @@ async def main(reg_data: RegisterData):
 
 
 @app.post("/api/get_courses")
-async def main(body: CoursesRequest):
+def main(body: CoursesRequest):
     generator = CoursesGenerator()
     try:
         return generator.execute(body.data.login)

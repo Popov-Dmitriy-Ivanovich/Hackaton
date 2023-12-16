@@ -45,12 +45,10 @@ def clean_data(filename):  # Приводим csv в стандартный ви
     return df
 
 
-def clean_user_data(filename):  # приводим в стандартный вид подписки пользователя
-    df = pd.read_csv(filename)
-
+def clean_user_data(com):  # приводим в стандартный вид подписки пользователя
     news = ["name", "description"]
-    df.columns = news
-    return df
+    com.columns = news
+    return com
 
 
 def create_keys(df, created_stopwords):  # создаем список ключевых слов
