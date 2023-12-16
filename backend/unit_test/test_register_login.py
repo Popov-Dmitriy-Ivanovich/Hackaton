@@ -46,7 +46,11 @@ class TestAPI(unittest.TestCase):
             self.conn.session.delete(tmp)
             self.conn.session.delete(tmp2)
             self.conn.session.commit()
-        incorrect_register = {"name": "any name", "login": "TestRegister", "password": "1"}
+        incorrect_register = {
+            "name": "any name",
+            "login": "TestRegister",
+            "password": "1",
+        }
         with self.subTest(msg="test correct register"):
             resp = req.request("post", URL + "/api/register", json=correct_register)
             self.assertEqual(resp.json(), {"status": "OK"})

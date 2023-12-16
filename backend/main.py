@@ -1,31 +1,21 @@
+import json
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from starlette.responses import FileResponse
+
 from src.login import LoginData, process_login
 from src.register import RegisterData, register_user
 from src.vk_auth import VkAuth
-from src.courses_generator import CoursesRequest, CoursesGenerator, get_courses
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
-from typing import List
+from src.courses_generator import CoursesRequest, get_courses
 from src.process_form import process_favourites, ProfileFormResult
-from requests import request
-import json
 
 app = FastAPI()
+
 app.mount("/static", StaticFiles(directory="../frontend/build/static"), name="static")
 templates = Jinja2Templates(directory="../frontend/build")
 
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "https://localhost",
-    "https://loaclhost:8080",
-    "http://localhost:3000",
-    "http://192.168.111.205:3000",
-    "*",
-]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -34,6 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def serve_spa(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -41,7 +32,6 @@ async def serve_spa(request: Request):
 
 @app.post("/api/login")
 async def main(log_data: LoginData):
-    print(log_data)
     return process_login(log_data)
 
 
@@ -51,7 +41,7 @@ async def main(reg_data: RegisterData):
 
 
 @app.post("/api/get_courses")
-def main(body: CoursesRequest):
+async def main(body: CoursesRequest):
     try:
         return get_courses(body.data.login)
     except Exception as e:

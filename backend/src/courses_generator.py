@@ -10,7 +10,7 @@ from db.db_classes import (
 from typing import List
 from analys.analyze_user import UserAnaliser
 import random
-from ratelimit import limits, sleep_and_retry
+
 
 class CoursesRequestData(BaseModel):
     login: str
@@ -93,7 +93,7 @@ class CoursesGenerator:
     def guess_professions(
         self, vk_id: str, access_token: str, favourites: list[str]
     ) -> list[str]:
-        handler = UserAnaliser(vk_id,access_token,favourites)
+        handler = UserAnaliser(vk_id, access_token, favourites)
         return handler.get_user_professions()
 
     def _get_user_favourites(self, user_id: int) -> list[str]:
@@ -158,8 +158,7 @@ class CoursesGenerator:
             data=ResponseData(professions=prof_data, courses=cour_data)
         )
 
-@sleep_and_retry
-@limits(calls=1, period=1)
+
 def get_courses(login):
     handler = CoursesGenerator()
     return handler.execute(login)
