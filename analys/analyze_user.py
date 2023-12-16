@@ -103,10 +103,3 @@ class UserAnaliser(object):
         data = self.get_user_keys()
         res = self.analyze_user(data)
         return list(map(lambda x: x[0],res))
-
-# Передаем массив с выбранными специальностями
-user_choice = ["Наука и образование"]  
-token = "vk1.a.YHamet-XBEoueflHCRoGnutGIaKPSX8dNorqylxoHJpwtKeHDoPgvPMonKbHzRrCbM0iB7CE_qggiykOqgHoRhf1mxpIxBGM2wcciLuhs7PKIQdsE4isxx9nLayfjrYUyS1MGk1tYJf81qFmTdRnczzgOi4_fJJxq6e-1_x0KKm5ejHMJPJwbN6xc2dTLlxb"
-id_user = 189011945
-handler = UserAnaliser(id_user,token,user_choice)
-print(handler.get_user_professions())

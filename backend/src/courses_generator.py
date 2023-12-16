@@ -8,6 +8,7 @@ from db.db_classes import (
     ProfessionsTable,
 )
 from typing import List
+from analys.analyze_user import UserAnaliser
 import random
 
 
@@ -92,8 +93,8 @@ class CoursesGenerator:
     def guess_professions(
         self, vk_id: str, access_token: str, favourites: list[str]
     ) -> list[str]:
-        prof = ["Криминалист", "Фермер", "Агроном"]
-        return [prof[random.randint(0, 2)], prof[random.randint(0, 2)]]
+        handler = UserAnaliser(vk_id,access_token,favourites)
+        return handler.get_user_professions()
 
     def _get_user_favourites(self, user_id: int) -> list[str]:
         professions_entity = (
