@@ -34,3 +34,6 @@ backend/profilium.db
 backend/static
 backend/templates
 *venv*
+analyz/data
+*__pycache__*
+analys/data*

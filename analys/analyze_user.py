@@ -1,91 +1,90 @@
-import pandas as pd
-import vk
 import time
-from get_info_by_public import get_groups_info, get_groups_info_execute
-from cleaning import clean_user_data, create_keys
+from nltk.corpus import stopwords
 import json
+import pymorphy3
+import time
+import pandas as pd
+from nltk.corpus import stopwords
+from analys.vk_api_resolver import VkApiResolver
 
-created_stopwords = "stopwords/custom_stopwords.json"  # Путь к созданным стоп-словам
+CREATED_STOPWORDS_PATH = "analys/resourses/stopwords/custom_stopwords.txt"  
+PROF_KEY_WORDS_PATH = 'analys/resourses/professions_keywords.json'
+USER_DATA_OBJ_PATH = 'analys/resourses/user_data.json'
 
+with open(CREATED_STOPWORDS_PATH, "r", encoding="utf-8") as file:
+    my_stopwords = set(file.read().splitlines())
 
-def get_user_subscriptions(
-    id_user, token
-):  # Получаем подписки пользователей (int id_user)
-    vk_api = vk.API(token)
-    try:
-        response = vk_api.users.getSubscriptions(user_id=id_user, v=5.92)
-        subscriptions = response["groups"]["items"][:15]
-        return subscriptions
-    except Exception as e:
-        return []
+with open(PROF_KEY_WORDS_PATH,'r', encoding='utf-8') as keywords_file:
+    professions_keys = json.load(keywords_file)
 
+with open(USER_DATA_OBJ_PATH,'r', encoding='utf-8') as user_data_file:
+    user_data = json.load(user_data_file)
 
-def get_user_keys(id_user, token):  # Получаем ключевые слова пользователя
-    k = get_user_subscriptions(id_user, token)
+stop_words = set(stopwords.words("russian"))
+morph = pymorphy3.MorphAnalyzer()
 
-    group_info = {"name": [], "description": []}
-    if k:
-        group_info = get_groups_info(k, token)
+class UserAnaliser(object):
+    def __init__(self,id_user,token,user_choise) -> None:
+        self._id_user = id_user
+        self._token = token
+        self._user_choise = user_choise
+        self._user_data = user_data.copy()
+        self._vk_resolver = VkApiResolver(self._token,self._id_user)
 
+    def clean_user_data(self,com):
+        com.columns = ["name", "description"]
+        return com
+
+    def create_word_list(self,lst):
+        res = []
+        for word in lst:
+            if word.lower() not in stop_words.union(my_stopwords):
+                res.append(word)
+        return res
+
+    # создаем список ключевых слов
+    def create_keys(self,df):  
+        keys = []
+        for i in df["name"]:
+            j = self.create_word_list(i.split())
+            for k in j:
+                if not k.isalpha():
+                    continue
+                keys.append(morph.parse(k)[0].normal_form)
+
+            for i in df["description"]:
+                if not pd.notna(i):
+                    continue
+                j = self.create_word_list(i.split())
+                for k in j:
+                    if not k.isalpha():
+                        continue
+                    keys.append(morph.parse(k)[0].normal_form)
+        return pd.DataFrame(keys)
+
+    def get_user_keys(self):
+        k = self._vk_resolver.get_user_subscriptions()
+        group_info = {"name": [], "description": []}
+        group_info = self._vk_resolver.get_group_info(k)
         com = pd.DataFrame(group_info)
+        df = self.clean_user_data(com)
+        keys = self.create_keys(df)
+        return pd.DataFrame(keys).drop_duplicates()
+    
+    def analyze_user(self,user_keywords):  
+        for category, keys in professions_keys.items():
+            # Нет смысла проходиться по категориям, которые неинтересны пользователю
+            if category in self._user_choise  or len(self._user_choise)==0:
+                for profession, normalized_words in keys.items():
+                    for i in user_keywords[0]:
+                        if i in normalized_words:
+                            self._user_data[profession] += 1
 
-        df = clean_user_data(com)
+        sorted_user_data = sorted(self._user_data.items(), key=lambda x: x[1], reverse=True)
+        #list типа [('Учитель', 56), ('Археолог', 37), ('Библиотекарь', 35)]
+        return sorted_user_data[:3]
 
-        keys = create_keys(df, created_stopwords)
-        if not keys.empty:
-            data = pd.DataFrame(keys)
-            data = data.drop_duplicates()
-            return data
-        else:
-            return pd.DataFrame()
-    else:
-        return pd.DataFrame()
-
-
-def analyze_user(
-    user_choice, user_keywords, id_user
-):  # Анализ ключевых слов пользователя
-    with open(
-        "professions_keys/keys_data.json",
-        "r",
-        encoding="utf-8",
-    ) as json_file:
-        key_data = json.load(json_file)
-
-    user_data = {}
-
-    for category, professions in key_data.items():
-        if category in user_choice:
-            for profession, keywords in professions.items():
-                normalized_words = [word.lower() for word in keywords]
-
-                for i in user_keywords[0]:
-                    if i.lower() in normalized_words:
-                        if profession not in user_data:
-                            user_data[profession] = 0
-                        user_data[profession] += 1
-
-    results = []
-    for i in range(3):
-        max_key = max(user_data, key=user_data.get)
-        max_value = user_data.pop(max_key)
-        results.append((max_key, max_value))
-
-    for profession, value in results:
-        print(f"{profession}: {value}")
-
-    if results:
-        return results
-    else:
-        print("ошибка получения результатов")
-        return None
-
-
-user_choice = ["Наука и образование"]  # Передаем массив с выбранными специальностями
-token = ""
-id_user = 417049821
-data = get_user_keys(id_user, token)
-if not data.empty:
-    k = analyze_user(user_choice, data, id_user)
-else:
-    print("ошибка получения ключевых слов пользователя")
+    def get_user_professions(self):
+        data = self.get_user_keys()
+        res = self.analyze_user(data)
+        return list(map(lambda x: x[0],res))
