@@ -1,11 +1,13 @@
 import pandas as pd
 import vk
 import time
+import nltk
 from nltk.corpus import stopwords
 import pymorphy3
 from analys.prof_info import file_mapping, user_data
 import unicodedata
 
+nltk.download('stopwords')
 morph = pymorphy3.MorphAnalyzer()
 
 CREATED_STOPWORDS_PATH = "analys/stopwords/custom_stopwords.txt"  
