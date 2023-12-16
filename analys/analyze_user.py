@@ -67,7 +67,7 @@ class UserAnaliser(object):
         group_info = {"name": [], "description": []}
 
         for sub in k:
-            time.sleep(0.5)
+            time.sleep(2)
 
             tmp = self._vk_resolver.get_group_info(sub)
             name, description = tmp
