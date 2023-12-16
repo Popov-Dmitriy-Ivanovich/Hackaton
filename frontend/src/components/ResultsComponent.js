@@ -44,6 +44,16 @@ class ResultsComponent extends Component{
             })
         })
 
+    open_site(url){
+        window.open(
+            url, 
+            "hello", 
+            "top=200, left=200, menubar=no, width=1000, scrollbars=no, height=1000", 
+            '_blank', 
+            'noreferrer'
+        )
+    }
+
     render(){
         return(
             <div className='ResultsContainer'>
@@ -53,7 +63,7 @@ class ResultsComponent extends Component{
                 </div>
                 <div className='CoursesSection' style={{display: !this.state.error ? '' : 'none'}}>
                     {this.state.courses.map(course=>
-                        <div className='ResultSection'>
+                        <div className='ResultSection' onClick={()=>this.open_site("https://profilum.ru/")}>
                             <span className='CourseName'>{course.name}</span>
                             <p className='CourseDescription'>{course.description}</p>
                         </div>
@@ -64,7 +74,7 @@ class ResultsComponent extends Component{
                 </div>
                 <div className='CoursesSection' style={{display: !this.state.error ? '' : 'none'}}>
                     {this.state.professions.map(profession=>
-                        <div className='ResultSection'>
+                        <div className='ResultSection' onClick={()=>this.open_site("https://profilum.ru/")}>
                             <span className='CourseName'>{profession.name}</span>
                             <p className='CourseDescription'>{profession.description}</p>
                         </div>

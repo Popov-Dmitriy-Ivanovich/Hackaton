@@ -43,6 +43,15 @@
     width: fit-content;
     max-width: 300px;
     padding: clamp(15px, 2.2vw, 20px);
+    transition: 0.3s linear;
+    cursor: pointer;
+}
+
+.ResultSection:hover{
+    border: 3px solid #ffdecaac;
+    background-color: #ffdeca39;
+    transition: 0.3s linear;
+    transform: scale(1.15);
 }
 
 .CoursesLable{
@@ -54,18 +63,6 @@
     border-radius: clamp(10px, 2vw, 20px);
     background-color: #ffdeca40;
     padding: clamp(25px, 4vw, 40px) 10px clamp(25px, 4vw, 40px) 10px;
-}
-
-.WaitingLable{
-    font-size: clamp(20px, 3.5vw, 40px);
-    max-width: 80vw;
-    margin: auto;
-    font-family: MontserratBold;
-    margin-top:30px;
-    border-radius: clamp(10px, 2vw, 20px);
-    background-color: #ffdeca40;
-    padding: clamp(25px, 4vw, 40px) 10px clamp(25px, 4vw, 40px) 10px;
-    z-index: 1000;
 }
 
 @font-face {
