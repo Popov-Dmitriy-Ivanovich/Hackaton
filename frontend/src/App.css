@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
