@@ -67,6 +67,11 @@
     margin-bottom: 30px;
 }
 
+.LoginForm_form{
+    display: flex;
+    flex-direction: column;
+}
+
 @font-face {
     font-family: MontserratLight;
     src: url("../resources/fonts/Montserrat-Light.ttf");
