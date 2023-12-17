@@ -83,9 +83,11 @@ class LoginForm extends Component{
                     
                     <span   style={{display: !this.state.register ? '' : 'none' }}    className='LoginLabel'>Login</span>
                     <span   style={{display:  this.state.register ? '' : 'none' }}    className='LoginLabel'>Register</span>
+                    <input  style={{display:  this.state.register ? '' : 'none' }}    className='LoginFormInput NameInput'     placeholder='Name'                     onChange={(event)=>{this.setState({name: event.target.value})}}></input>
                     <input                                                            className='LoginFormInput LoginInput'    placeholder='Login' onChange={(event)=>{this.setState({login: event.target.value})}}></input>
                     <input                                                            className='LoginFormInput PasswordInput' placeholder='Password' type='password' onChange={(event)=>{this.setState({password: event.target.value})}}></input>
-                    <input  style={{display:  this.state.register ? '' : 'none' }}    className='LoginFormInput NameInput'     placeholder='Name'                     onChange={(event)=>{this.setState({name: event.target.value})}}></input>
+                    <p  style={{display:  this.state.register ? '' : 'none' }} className='RegisterDesc'>Логин, пароль и имя должны быть не длиннее 100 символов и содержатть только буквы латинского алфавита, цифры и символ нижнего подчёркивания ('_')</p>
+                    
                     {(this.state.login_failed&&(!this.state.register)) ? <span className='LoginFailedLabel'>Login failed</span> :""}
                     {(this.state.registration_failed&&(this.state.register)) ? <div className='RegFailedContainer'> <div className='RegistrationFailedLabel'><span>Registration failed </span><br/><span className='RegistrationFailDescription'>{this.state.registration_fail_codes[this.state.registration_fail_code]}</span></div> </div>  :""}
                     <button style={{display: !this.state.register ? '' : 'none' }}    className='LoginButton'    onClick={()=>{this.send_login()}}>      Login    </button>

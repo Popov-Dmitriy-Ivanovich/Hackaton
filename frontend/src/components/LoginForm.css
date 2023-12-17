@@ -95,6 +95,18 @@
     font-family: MontserratSemiBold;
 }
 
+.RegisterDesc{
+    border-radius: 10px;
+    border: 2px solid #ffdecaae;
+    text-align: center;
+    font-family: MontserratSemiBold;
+    font-size: clamp(10px, 1.8vw, 17px);
+    text-align-last: center;
+    padding: 10px;
+    width: clamp(220px, 25vw, 300px);
+    color: #ffefe5bc;
+}
+
 @font-face {
     font-family: MontserratBold;
     src: url("../resources/fonts/Montserrat-Bold.ttf");
