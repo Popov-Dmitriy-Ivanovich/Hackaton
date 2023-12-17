@@ -68,7 +68,6 @@ class LoginForm extends Component{
             }
             else{
                 this.setState({registration_failed: true})
-                console.log(JSON.stringify(res.status))
                 this.setState({registration_fail_code: res.status})
             }
             })
@@ -83,9 +82,13 @@ class LoginForm extends Component{
                     
                     <span   style={{display: !this.state.register ? '' : 'none' }}    className='LoginLabel'>Login</span>
                     <span   style={{display:  this.state.register ? '' : 'none' }}    className='LoginLabel'>Register</span>
-                    <input                                                            className='LoginFormInput LoginInput'    placeholder='Login' onChange={(event)=>{this.setState({login: event.target.value})}}></input>
-                    <input                                                            className='LoginFormInput PasswordInput' placeholder='Password' type='password' onChange={(event)=>{this.setState({password: event.target.value})}}></input>
+                    <form className='LoginForm_form'>
                     <input  style={{display:  this.state.register ? '' : 'none' }}    className='LoginFormInput NameInput'     placeholder='Name'                     onChange={(event)=>{this.setState({name: event.target.value})}}></input>
+                    <input                                                            className='LoginFormInput LoginInput'    placeholder='Login' onChange={(event)=>{this.setState({login: event.target.value})}}></input>
+                    <input                                                            className='LoginFormInput PasswordInput' placeholder='Password' type='password' onChange={(event)=>{this.setState({password: event.target.value})}} onKeyUp={(event)=>{if (event.key === "Enter") {this.state.register ? this.send_register() : this.send_login()}}}></input>
+                    </form>
+                    <p  style={{display:  this.state.register ? '' : 'none' }} className='RegisterDesc'>Логин, пароль и имя должны быть не длиннее 100 символов и содержатть только буквы латинского алфавита, цифры и символ нижнего подчёркивания ('_')</p>
+                    
                     {(this.state.login_failed&&(!this.state.register)) ? <span className='LoginFailedLabel'>Login failed</span> :""}
                     {(this.state.registration_failed&&(this.state.register)) ? <div className='RegFailedContainer'> <div className='RegistrationFailedLabel'><span>Registration failed </span><br/><span className='RegistrationFailDescription'>{this.state.registration_fail_codes[this.state.registration_fail_code]}</span></div> </div>  :""}
                     <button style={{display: !this.state.register ? '' : 'none' }}    className='LoginButton'    onClick={()=>{this.send_login()}}>      Login    </button>

@@ -1,12 +1,15 @@
 
 .Header{
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-content: center;
     justify-items: space-between;
     align-items: center;
-    padding-top: 15px;
+    padding: 15px 15px 0px 15px;
+    width: 100vw;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .Name {
@@ -20,11 +23,11 @@
     display: flex;
     justify-items: center;
     align-items: center;
-    margin-left: 15px;
     font-size: clamp(15px, 5vw, 30px);
     font-family: MontserratBold;
     color: white;
     cursor: pointer;
+    width: fit-content;
 }
 
 .MenuButton{
@@ -58,7 +61,6 @@
 .LogoutButton{
     display: flex;
     height: 40px;
-    margin-right: 15px;
     padding: 0px clamp(5px, 1vw, 10px) 0px clamp(5px, 1vw, 10px);
     justify-items: center;
     align-items: center;

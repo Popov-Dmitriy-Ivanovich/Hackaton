@@ -61,6 +61,7 @@
     font-size: 20px;
     cursor: text;
     color: #ffefe5bc;
+    width: 236px;
 }
 
 .LoginFormInput::placeholder{
@@ -93,6 +94,18 @@
 .RegistrationFailDescription{
     font-size: 15px;
     font-family: MontserratSemiBold;
+}
+
+.RegisterDesc{
+    border-radius: 10px;
+    border: 2px solid #ffdecaae;
+    text-align: center;
+    font-family: MontserratSemiBold;
+    font-size: clamp(15px, 1.8vw, 18px);
+    text-align-last: center;
+    padding: 10px;
+    width: 220px;
+    color: #ffefe5bc;
 }
 
 @font-face {
