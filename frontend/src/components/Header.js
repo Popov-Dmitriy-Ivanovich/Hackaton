@@ -8,7 +8,7 @@ class Header extends Component{
                 <div className='Name' onClick={()=>this.props.go_to_menu()}>
                     Career Guider
                 </div>
-                <div className='HeaderRightPart'>
+                <span className='HeaderRightPart'>
                     {this.props.show_menu_button ? 
                     <div className='MenuButton' onClick={()=>this.props.go_to_menu()}>
                         Меню
@@ -17,7 +17,7 @@ class Header extends Component{
                     <div className='LogoutButton' onClick={()=>this.props.logout()}>
                         Выйти
                     </div>:''}
-                </div>
+                </span>
                     
             </div>
         )
