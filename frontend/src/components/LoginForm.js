@@ -78,7 +78,7 @@ class LoginForm extends Component{
     render(){
         return(
             <div className='LoginFormContainer'>
-                <div className='LoginForm' onSubmit={()=>console.log('Submit')}>
+                <div className='LoginForm'>
                     
                     <span   style={{display: !this.state.register ? '' : 'none' }}    className='LoginLabel'>Login</span>
                     <span   style={{display:  this.state.register ? '' : 'none' }}    className='LoginLabel'>Register</span>
