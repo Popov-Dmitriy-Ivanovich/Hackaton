@@ -11,8 +11,6 @@ class App extends Component {
 	state={
 		usr_login: '',
 		process: 'login',
-		// ip: "192.168.111.205"
-		// ip: "localhost"
 		main_host: "https://89.232.176.33:443",
 		routes: {
 			login: 		   '/api/login',
@@ -66,6 +64,7 @@ class App extends Component {
 						login={this.state.usr_login}
 						form_route={this.state.routes.form}
 						response_route={this.state.routes.form_response}
+						go_to_menu={(this.state.process!=="login" && this.state.process!=="register") ? ()=>this.set_process('menu') : ()=>{}}
 					/>: 
 				(this.state.process === 'get_results') ?
 					<ResultsComponent 

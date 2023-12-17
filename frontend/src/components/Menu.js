@@ -17,9 +17,9 @@ class Menu extends Component{
     render(){
         return(
             <div className="Menu">
-                <ActionCard onClick_func={()=>this.props.set_process('form')} name={"Пройти тестирование"} description={"Предлагаем пройти психологический тест, который поможет вам определиться с профессиональной ориентацией"} />
-                <ActionCard onClick_func={()=>this.login()} name={"Анализ страницы в ВК"} description={"Вам будет предложено авторизоваться в ВК для анализа вашей страницы в целях помощи с профессиональной ориентацией"} />
-                <ActionCard onClick_func={()=>this.props.set_process('get_results')} name={"Получить результаты анализа"} description={"Вы можете посмотреть, какие профессии порекомендовали вам алгоритмы на основании анализа заполненной вами формы и вашей стриницы в ВК"} />
+                <ActionCard important={false} onClick_func={()=>this.props.set_process('form')} name={"Пройти тестирование"} description={"Предлагаем пройти психологический тест, который поможет вам определиться с профессиональной ориентацией"} />
+                <ActionCard important={false} onClick_func={()=>this.login()} name={"Авторизация в ВК"} description={"Вам будет предложено авторизоваться в ВК для анализа вашей страницы в целях помощи с профессиональной ориентацией"} />
+                <ActionCard important={true}  onClick_func={()=>this.props.set_process('get_results')} name={"Получить результаты анализа"} description={"Вы можете посмотреть, какие профессии порекомендовали вам алгоритмы на основании анализа заполненной вами формы и вашей стриницы в ВК"} />
             </div>
         )
     }

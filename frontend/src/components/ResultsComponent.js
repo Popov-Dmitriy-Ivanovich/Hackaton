@@ -23,7 +23,6 @@ class ResultsComponent extends Component{
         })
         .then(responce => {
             responce.json().then(res=>{
-                console.log(res)
                 if (!res.err)
                 {
                     this.setState({vk_logined: true, courses: res.data.courses, professions: res.data.professions}, this.setState({fetched: true}))

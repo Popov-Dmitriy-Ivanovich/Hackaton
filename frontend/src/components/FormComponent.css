@@ -128,6 +128,13 @@ input[type=text]:focus{
     margin-top: 25vh;
 }
 
+.ResultDivInner{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
 .ButtonText{
     font-size: clamp(15px, 3vw, 20px);
 }
@@ -152,6 +159,22 @@ input[type=text]:focus{
     padding: 5px 20px 5px 20px;
     cursor: pointer;
     margin-top: 30px;
+}
+
+.MenuButtonForm{
+    margin-top: 30px;
+    display: flex;
+    height: 40px;
+    padding: 0px clamp(5px, 1vw, 10px) 0px clamp(5px, 1vw, 10px);
+    justify-items: center;
+    align-items: center;
+    border-radius: 15px;
+    font-size: clamp(15px, 3vw, 20px);
+    font-family: MontserratSemiBold;
+    border: 3px solid #ffdeca6e;
+    background-color: #ffdeca15;
+    cursor: pointer;
+    width: fit-content;
 }
 
 @font-face {

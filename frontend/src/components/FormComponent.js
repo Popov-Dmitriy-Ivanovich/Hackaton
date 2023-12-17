@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './FormComponent.css'
+import Menu from './Menu'
 
 class FormComponent extends Component{
     state={
@@ -80,12 +81,10 @@ class FormComponent extends Component{
 
     render(){
         return(
-            <div>
+            <div style={{width: '90vw', margin: 'auto'}}>
                 <div className='ResultDiv' style={{display: !(this.state.form_was_sended==='not') ? '' : 'none' }}>
-                    {/* <div className='FormErrorContainer'> */}
-                        {this.state.form_was_sended==='success'? 'Форма отправлена успешно' : ''}
-                        {this.state.form_was_sended==='failed' ? <div><span className='FormErrorLable'>Произошла ошибка</span> <br/> <span className='FormErrorDescription'>{this.state.form_error_description}</span><br/><button className='DropFormButton' onClick={this.reset_form}>Заполнить форму заново</button></div>         : ''}
-                    {/* </div> */}
+                    {this.state.form_was_sended==='success'? <div className='ResultDivInner'><span> Форма отправлена успешно </span> <div className='MenuButtonForm' onClick={()=>this.props.go_to_menu()}>Меню</div> </div> : ''}
+                    {this.state.form_was_sended==='failed' ? <div><span className='FormErrorLable'>Произошла ошибка</span> <br/> <span className='FormErrorDescription'>{this.state.form_error_description}</span><br/><button className='DropFormButton' onClick={this.reset_form}>Заполнить форму заново</button></div>         : ''}
                 </div>
                 <div className='FormContainer' style={{display: (this.state.form_was_sended==='not') ? '' : 'none' }}>
                     <ul className="Form_ul">

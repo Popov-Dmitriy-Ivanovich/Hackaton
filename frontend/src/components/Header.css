@@ -40,6 +40,14 @@
     border: 3px solid #ffdeca6e;
     background-color: #ffdeca15;
     cursor: pointer;
+    transition: .3s all;
+}
+
+.MenuButton:hover{
+    border: 3px solid #ffdecaac;
+    background-color: #ffdeca39;
+    transition: .3s all;
+    transform: scale(1.2);
 }
 
 .HeaderRightPart{
@@ -60,6 +68,14 @@
     border: 3px solid #ffdeca6e;
     background-color: #ffdeca15;
     cursor: pointer;
+    transition: .3s all;
+}
+
+.LogoutButton:hover{
+    border: 3px solid #ffdecaac;
+    background-color: #ffdeca39;
+    transition: .3s all;
+    transform: scale(1.2);
 }
 
 @font-face {
