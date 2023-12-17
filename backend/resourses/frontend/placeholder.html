@@ -1,122 +1,33 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        
-    </head>
-    <body>
-    <div id = 'border'>
-        <div id='clock'>
-            <canvas id = "draw_clock" width="500" height="500">
-                fsdkjldsfjkl
-            </canvas>
-        </div>
-    </div>
-    <script>
-        function main(){
-    let min_alpha = 0
-    let draw_alpha = 0
-    let sec_alpha = 0
-    d_clock = document.getElementById('draw_clock')
-    const ctx = d_clock.getContext('2d')
-    setInterval(() => {
-        min_alpha+=6;
-        sec_alpha+=36;
-        ctx.clearRect(0,0,500,500)
-        if (min_alpha%60==0){
-            draw_alpha = min_alpha/10;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=600px, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body{
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, blue 10%, #ffbe98 100%);
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
         }
-        
-
-        draw_arr(draw_alpha,180,250,250,ctx);
-        
-        draw_arr(sec_alpha,50,250,350,ctx)
-        
-        draw_symbols(ctx)
-    }, 100);
-}
-function draw_arr(alpha,radius,x0,y0,ctx){
-    
-    
-    //ctx.clearRect(0,0,d_clock.width,d_clock.height)
-    ctx.lineWidth = 5
-    ctx.beginPath()
-    ctx.moveTo(x0,y0)
-    ctx.lineTo(
-        x0+radius*Math.sin(Math.PI*alpha/180),
-        y0-radius*Math.cos(Math.PI*alpha/180)
-    )
-    ctx.stroke();
-
-}
-function draw_symbols(ctx){
-    ctx.beginPath()
-    ctx.lineWidth=2
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    for (let i = 0;i<60;i++){
-        let alpha = i * 6;
-        if(i%5==0){
-            ctx.moveTo(
-                250 + 180 * Math.sin(alpha*Math.PI/180),
-                250 - 180 * Math.cos(alpha*Math.PI/180)
-            )
-            ctx.fillText(i.toString(),
-                250 + 170 * Math.sin(alpha*Math.PI/180),
-                250 - 170 * Math.cos(alpha*Math.PI/180)
-            )
+        .Lable{
+            color: white;
+            border-radius: 30px;
+            height: fit-content;
+            width: fit-content;
+            border: 3px solid #ffdeca6e;
+            background-color: #ffdeca15;
+            padding: 35px;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        else{
-            ctx.moveTo(
-                250 + 190 * Math.sin(alpha*Math.PI/180),
-                250 - 190 * Math.cos(alpha*Math.PI/180)
-            )
-            
-        }
-        ctx.lineTo(
-            250 + 200 * Math.sin(alpha*Math.PI/180),
-            250 - 200 * Math.cos(alpha*Math.PI/180)
-        )
-        
-    }
-    for (let i =0; i < 10;i++){
-        let alpha = i * 36;
-        ctx.moveTo(
-            250 + 40 * Math.sin(alpha*Math.PI/180),
-            350 - 40 * Math.cos(alpha*Math.PI/180)
-        )
-        ctx.fillText(i.toString(),
-            250 + 35 * Math.sin(alpha*Math.PI/180),
-            350 - 35 * Math.cos(alpha*Math.PI/180)
-        )
-        ctx.lineTo(
-            250 + 50 * Math.sin(alpha*Math.PI/180),
-            350 - 50 * Math.cos(alpha*Math.PI/180)
-        )
-    }
-    ctx.moveTo(300,350)
-    ctx.arc(250,350,50,0,2*Math.PI)
-    
-    ctx.stroke();
-    
-    ctx.beginPath()
-    grad = ctx.createRadialGradient(250,250,200,250,250,220);
-    grad.addColorStop(0,'yellow')
-    grad.addColorStop(0.5,'white')
-    grad.addColorStop(1,'yellow')
-    ctx.lineWidth=10
-    ctx.moveTo(460,250)
-    let tm = ctx.arc(250,250,210,0,Math.PI*2)
-    ctx.strokeStyle = grad;
-    ctx.stroke()
-    ctx.strokeStyle = 'black';
-    ctx.beginPath()
-    ctx.arc(250,250,20,0,Math.PI*2)
-    ctx.fillStyle = 'yellow'
-    ctx.fill()
-    ctx.fillStyle = 'black'
-}
-document.addEventListener("DOMContentLoaded",main);
-
-    </script>
-    </body>
+    </style>
+</head>
+<body>
+    <div class="Lable"> Вы можете покинуть страницу </div>
+</body>
 </html>
