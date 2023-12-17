@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import './LoginForm.css'
-// import { Agent } from './https-browserify/index';
-
 
 class LoginForm extends Component{
 
@@ -24,9 +22,6 @@ class LoginForm extends Component{
     send_login = async() => {
           
         await fetch(this.props.main_host + this.props.login_route, {
-            // agent: new Agent({
-            //     rejectUnauthorized: false
-            //  }),
             method: 'POST',
             headers:{
                 'content-type': 'application/json;charser=utf-8'
@@ -59,9 +54,6 @@ class LoginForm extends Component{
     send_register = async() => {
           
         await fetch(this.props.main_host + this.props.register_route, {
-            // agent: new Agent({
-            //     rejectUnauthorized: false
-            //  }),
             method: 'POST',
             headers:{
                 'content-type': 'application/json;charser=utf-8'

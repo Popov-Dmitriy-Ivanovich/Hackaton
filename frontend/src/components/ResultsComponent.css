@@ -6,9 +6,10 @@
 
 .CourseDescription{
     font-family: MontserratLight;
-    font-size: clamp(11px, 2.1vw, 17px);
+    font-size: clamp(10px, 2vw, 17px);
+    text-align-last: center;
     text-align: justify;
-    text-align-last: center
+    text-justify: inter-character;
 }
 
 .LableError{
@@ -29,9 +30,10 @@
 }
 
 .CoursesSection{
+    margin: auto;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: calc(100% - 2 * clamp(3px, 2vw, 10px));
     justify-content: center;
 }
 
@@ -39,10 +41,9 @@
     border-radius: clamp(20px, 3vw, 30px);
     border: 3px solid #ffdeca6e;
     background-color: #ffdeca15;
-    margin: clamp(20px, 2.5vw, 25px) 10px 15px clamp(20px, 2.5vw, 25px);
-    width: fit-content;
-    max-width: 300px;
-    padding: clamp(15px, 2.2vw, 20px);
+    margin: 5px clamp(3px, 2vw, 10px) 5px clamp(3px, 2vw, 10px);
+    width: clamp(100px, 35vw, 300px);
+    padding: clamp(5px, 2vw, 20px);
     transition: 0.3s linear;
     cursor: pointer;
 }
@@ -63,6 +64,7 @@
     border-radius: clamp(10px, 2vw, 20px);
     background-color: #ffdeca40;
     padding: clamp(25px, 4vw, 40px) 10px clamp(25px, 4vw, 40px) 10px;
+    margin-bottom: 30px;
 }
 
 @font-face {

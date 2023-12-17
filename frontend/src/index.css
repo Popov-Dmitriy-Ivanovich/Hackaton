@@ -27,7 +27,7 @@ code {
   width: 100px;
   height: 100px;
   border-radius: 30%;
-  border: 10px #4189fdb9 solid;
+  border: 10px rgb(175, 180, 250) solid;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   position: fixed;
   z-index: 999;

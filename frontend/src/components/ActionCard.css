@@ -35,6 +35,9 @@
     text-align-last: center
 }
 
+.ActionCardImportant{
+    box-shadow: 2px 2px 40px 10px #ffbe98;
+}
 
 @font-face {
     font-family: MontserratBold;
